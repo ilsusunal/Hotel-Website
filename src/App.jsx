@@ -1,3 +1,4 @@
+import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 import Footer from './layout/Footer'
 import Header from './layout/Header'
@@ -7,11 +8,13 @@ function App() {
 
   return (
     <>
-    <main className='flex flex-col items-center'>
-      <Header/>
-      <PageContent/>
-      <Footer/>
-    </main>
+      <Router>
+        <main className='flex flex-col items-center'>
+          <Header />
+          <PageContent />
+          <Footer />
+        </main>
+      </Router>
     </>
   )
 }
