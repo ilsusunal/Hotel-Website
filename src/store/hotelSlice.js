@@ -21,6 +21,9 @@ const hotelSlice = createSlice({
     reducers: {
         setFilteredRooms: (state, action) => {
             state.filteredRooms = action.payload;
+        },
+        clearFilteredRooms: (state) => {
+            state.filteredRooms = state.rooms;
         }
     },
     extraReducers: (builder) => {
@@ -29,9 +32,9 @@ const hotelSlice = createSlice({
                 state.status = "Loading";
             })
             .addCase(fetchRooms.fulfilled, (state, action) => {
-                console.log('Fetched Rooms:', action.payload);
                 state.status = "Success";
                 state.rooms = action.payload;
+                state.filteredRooms = action.payload;
             })
             .addCase(fetchRooms.rejected, (state, action) => {
                 state.status = "Failed";

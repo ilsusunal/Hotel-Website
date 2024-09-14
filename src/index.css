@@ -12,3 +12,32 @@
   @apply hover:text-lightpink hover:underline hover:underline-offset-4 hover:decoration-2;
 }
 
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 8px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: lightpink;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: lightpink;
+  cursor: pointer;
+}
+
