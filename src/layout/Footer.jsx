@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Footer() {
     return (
-        <main className='w-full p-4 md:p-12 bg-darkPink/50'>
+        <footer className='w-full p-4 md:p-12 bg-darkPink/50'>
             <section className='flex flex-wrap gap-4 justify-around md:px-8'>
                 {/* Hotel Name and Logo */}
                 <div className='flex flex-col gap-4 items-center'>
@@ -42,6 +42,6 @@ export default function Footer() {
             <section className='mt-12'>
                 <p className='text-center'>Created with love by İlsu @2024</p>
             </section>
-        </main>
+        </footer>
     )
 }
