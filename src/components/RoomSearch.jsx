@@ -1,12 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRooms } from '../store/hotelSlice';
 
 export default function RoomSearch() {
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
     const [adults, setAdults] = useState(1);
     const [children, setChildren] = useState(0);
+
+    const dispatch = useDispatch();
+    const {rooms, status} = useSelector(state => state.hotel);
+
+    useEffect(() => {
+        if(status === "idle"){
+            dispatch(fetchRooms());
+        }
+    }, [status, dispatch]);
 
     //To open and close the guest dropdown
     const [guestDropdownOpen, setGuestDropdownOpen] = useState(false);
