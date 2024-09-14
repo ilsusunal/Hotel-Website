@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchRooms } from '../store/hotelSlice';
+import { fetchRooms, setFilteredRooms } from '../store/hotelSlice';
+import { useHistory } from 'react-router-dom';
 
 export default function RoomSearch() {
     const [checkInDate, setCheckInDate] = useState(null);
@@ -10,14 +11,28 @@ export default function RoomSearch() {
     const [adults, setAdults] = useState(1);
     const [children, setChildren] = useState(0);
 
+    //Filtering rooms according to fetched data 
     const dispatch = useDispatch();
-    const {rooms, status} = useSelector(state => state.hotel);
+    const { rooms, status } = useSelector(state => state.hotel);
+    const history = useHistory();
 
     useEffect(() => {
-        if(status === "idle"){
+        if (status === "idle") {
             dispatch(fetchRooms());
         }
     }, [status, dispatch]);
+
+    const handleSearch = () => {
+        const filtered = rooms.filter(room => {
+            return (
+                room.availability === 'Available' &&
+                room.maxPersons.adults >= adults &&
+                room.maxPersons.children >= children)
+        });
+        console.log('Filtered at search:', filtered);
+        dispatch(setFilteredRooms(filtered));
+        history.push('/rooms', { filteredRooms: filtered });
+    }
 
     //To open and close the guest dropdown
     const [guestDropdownOpen, setGuestDropdownOpen] = useState(false);
@@ -89,7 +104,7 @@ export default function RoomSearch() {
             </form>
 
             {/* Search Button */}
-            <button className="bg-lightpink text-white p-4 w-full md:w-24 rounded-full">
+            <button onClick={handleSearch} className="bg-lightpink text-white p-4 w-full md:w-24 rounded-full">
                 <i className="fa-solid fa-magnifying-glass" />
             </button>
         </div>
