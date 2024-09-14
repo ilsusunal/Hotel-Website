@@ -3,7 +3,7 @@ import React from 'react'
 export default function Comments() {
     return (
         <section className='flex flex-col gap-12 my-16 p-8'>
-            <h1 className='text-lightpink text-3xl font-semibold text-center'>We heard them say..</h1>
+            <h1 className='text-lightpink font-playfair text-4xl font-semibold text-center'>We heard them say..</h1>
             <div className='bg-darkPink/10 rounded-2xl flex items-center p-12 gap-16'>
                 <div className='flex-grow'>
                     <p>
