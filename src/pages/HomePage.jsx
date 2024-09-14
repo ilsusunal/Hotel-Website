@@ -1,6 +1,7 @@
 import React from 'react'
 import Slider from '../components/Slider'
 import AboutHotel from '../components/AboutHotel'
+import Comments from '../components/Comments'
 
 export default function
     () {
@@ -8,12 +9,12 @@ export default function
         <main className='flex flex-col items-center'>
             <Slider />
             {/* RoomSearch */}
-            <div className='max-w-6xl'>
+            <section className='max-w-6xl'>
                 <AboutHotel/>
+                <Comments/>
                 {/* Rooms (RoomCard) */}
-                {/* Comments */}
                 {/* Location */}
-            </div>
+            </section>
         </main>
     )
 }
