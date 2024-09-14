@@ -10,8 +10,12 @@ export default function
     () {
     return (
         <main className='flex flex-col items-center'>
-            <Slider />
-            <RoomSearch/>
+            <section className="relative w-full">
+                <Slider />
+                <div className="absolute top-2 md:top-1/4 left-0 w-full flex justify-center">
+                    <RoomSearch />
+                </div>
+            </section>
             <section className='max-w-6xl'>
                 <AboutHotel/>
                 <Comments/>
