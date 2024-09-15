@@ -14,7 +14,7 @@ const CheckInPicker = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center max-w-24">
       <i className="fa-solid fa-calendar-days" />
       <label className="text-sm font-semibold">Check In</label>
       <DatePicker

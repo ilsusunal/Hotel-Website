@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function RoomCard({ roomDetails }) {
+export default function RoomCard({ roomDetails, onBookNow  }) {
   return (
     <div className='border-2 rounded-2xl flex'>
       {/*Room image */}
-      <img src={roomDetails.images[0]} alt="" className='w-1/3' />
+      <img src={roomDetails.images[0]} alt="" className='rounded-2xl w-1/3' />
       <section className='p-12'>
         <h2 className='font-playfair text-2xl font-semibold'>{roomDetails.type}</h2>
         {/* Description */}
@@ -36,10 +36,10 @@ export default function RoomCard({ roomDetails }) {
         {/* Buttons*/}
         <div className='flex justify-between'>
           <div className='flex gap-4 items-end'>
-            <p className='font-playfair text-3xl font-semibold'>${roomDetails.price_per_night}</p>
+            <p className='font-playfair text-xl font-semibold'>${roomDetails.price_per_night}</p>
             <p>per night</p>
           </div>
-          <button>Book Now</button>
+          <button onClick={onBookNow}>Book Now</button>
         </div>
       </section>
     </div>

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import CheckInPicker from '../shared/CheckInPicker';
 import CheckOutPicker from '../shared/CheckOutPicker';
 import GuestControl from '../shared/GuestControl';
-import RoomCard from '../cards/RoomCard';
 import RoomDetails from '../components/RoomDetails';
 
 
@@ -119,10 +118,10 @@ export default function RoomReservationPage({ history }) {
             <section className='flex flex-col md:flex-row gap-6'>
                 <RoomDetails roomDetails={roomDetails} />
                 {/* Reservation Box */}
-                <div className='w-2/5 border-2 rounded-2xl p-8 h-full items-center'>
+                <div className='w-2/5 border-2 rounded-2xl p-8 h-full'>
                     <p className='font-semibold text-xl font-playfair'>${roomDetails.price_per_night} per night</p>
-                    <div className='border-y-2 p-8 h-auto m-4'>
-                        <div className='flex border-b mb-4'>
+                    <div className='border-y-2 p-8 h-auto m-4 flex flex-col items-center'>
+                        <div className='flex items-center border-b pb-4 mb-4'>
                             <CheckInPicker />
                             <CheckOutPicker />
                         </div>

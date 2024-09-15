@@ -8,15 +8,17 @@ import PriceSlider from '../shared/PriceSlider';
 import ServiceFilter from '../shared/ServiceFilter';
 import CheckInPicker from '../shared/CheckInPicker';
 import CheckOutPicker from '../shared/CheckOutPicker';
+import { setFilteredRooms } from '../store/hotelSlice';
 
 export default function RoomPage() {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
-  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [filteredRooms, setFilteredRoomsUI] = useState(null);
 
+  const history = useHistory();
   const dispatch = useDispatch();
   const rooms = useSelector(state => state.hotel.rooms);
-  const filteredRooms = useSelector(state => state.hotel.filteredRooms);
+  const uniqueRoomTypes = Array.from(new Set(rooms.map(room => room.type)));
 
   const [searchParams, setSearchParams] = useState({
     checkInDate: null,
@@ -29,7 +31,7 @@ export default function RoomPage() {
     wifi: false,
     bedType: '',
   });
-  const history = useHistory();
+  
 
   const handlePriceChange = (minPrice, maxPrice) => {
     setSearchParams(prev => ({
@@ -47,25 +49,27 @@ export default function RoomPage() {
   };
 
   const handleSearch = () => {
-    const filteredRooms = rooms.filter(room => {
+    const filtered = rooms.filter(room => {
       const withinPriceRange = room.price_per_night >= searchParams.minPrice && room.price_per_night <= searchParams.maxPrice;
       const hasKitchen = !searchParams.kitchen || room.kitchen;
       const hasWifi = !searchParams.wifi || room.wifi;
       const matchesBedType = !searchParams.bedType || room.bedType === searchParams.bedType;
       return withinPriceRange && hasKitchen && hasWifi && matchesBedType;
     });
-
-    dispatch(setFilteredRooms(filteredRooms));
-    const queryString = new URLSearchParams(searchParams).toString();
-    history.push(`/rooms/reservation?${queryString}`);
+    setFilteredRoomsUI(filtered);
   };
 
-  const handleRoomSelect = (room) => {
-    setSelectedRoom(room);
+  const handleBookNow = (room) => {
+    dispatch(setFilteredRooms([room]));
+    history.push(`/rooms/reservation?roomType=${room.type}`);
   };
+
+  const roomsToDisplay = filteredRooms || rooms.filter((room, index, self) => 
+    self.findIndex(r => r.type === room.type) === index 
+  );
 
   return (
-    <div className='w-2/3  m-12 space-y-4'>
+    <div className='w-2/3 m-12 space-y-8'>
       <nav className='flex gap-2 items-center'>
         <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
         <i className="fa-solid fa-chevron-right" />
@@ -74,17 +78,15 @@ export default function RoomPage() {
 
       {/* Title*/}
       <section>
-        <h1 className='text-lightpink font-playfair text-3xl font-semibold'>Rooms & Suits</h1>
+        <h1 className='text-lightpink font-playfair text-3xl font-semibold mb-8'>Rooms & Suits</h1>
       </section>
 
       {/* Search*/}
       <section className='flex justify-between items-center'>
         {/* Filters*/}
-        <section className='flex items-center justify-between border-2 rounded-xl p-2  w-1/4' >
-          <div className="flex">
-            <CheckInPicker />
-            <CheckOutPicker />
-          </div>
+        <section className='flex items-center justify-between w-3/4' >
+          <CheckInPicker />
+          <CheckOutPicker />
           <GuestControl
             adults={adults}
             children={children}
@@ -108,7 +110,7 @@ export default function RoomPage() {
           <button onClick={handleSearch}>
             Filter
           </button>
-          <button onClick={handleSearch}>
+          <button onClick={() => setFilteredRoomsUI(null)}>
             All
           </button>
         </div>
@@ -116,8 +118,8 @@ export default function RoomPage() {
 
       {/* Rooms*/}
       <section className='flex flex-col flex-wrap gap-4' >
-        {filteredRooms.map(room => (
-          <RoomCard key={room.id} roomDetails={room} />
+        {roomsToDisplay.map(room => (
+          <RoomCard key={room.id} roomDetails={room} onBookNow={() => handleBookNow(room)}/>
         ))}
       </section >
     </div >
