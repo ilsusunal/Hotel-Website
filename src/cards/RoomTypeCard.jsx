@@ -1,6 +1,7 @@
 import React from 'react'
 import Pool from "/Pool.jpg"
 import { useSelector } from 'react-redux';
+import Button from '../shared/button';
 
 export default function RoomTypeCard() {
   const selectedRoomType = useSelector((state) => state.hotel.selectedRoomType);
@@ -34,8 +35,8 @@ export default function RoomTypeCard() {
         </div>
         {/* Buttons*/}
         <div className='flex justify-between'>
-          <button>Book Now</button>
-          <button>see more  <i className="fa-solid fa-chevron-right" /></button>
+          <Button to="/rooms/reservation" label="Book Now" variant="filled"/>
+          <Button to="/rooms" label="see more" variant="text"/>
         </div>
       </section>
       {/* Image(slider) */}

@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../shared/button'
 
 export default function RoomCard({ roomDetails, onBookNow  }) {
   return (
@@ -39,7 +40,7 @@ export default function RoomCard({ roomDetails, onBookNow  }) {
             <p className='font-playfair text-xl font-semibold'>${roomDetails.price_per_night}</p>
             <p>per night</p>
           </div>
-          <button onClick={onBookNow}>Book Now</button>
+          <Button onClick={onBookNow} label="Book Now" variant="filled"/>
         </div>
       </section>
     </div>

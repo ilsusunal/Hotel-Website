@@ -5,6 +5,7 @@ import CheckInPicker from '../shared/CheckInPicker';
 import CheckOutPicker from '../shared/CheckOutPicker';
 import GuestControl from '../shared/GuestControl';
 import RoomDetails from '../components/RoomDetails';
+import Button from '../shared/button';
 
 
 export default function RoomReservationPage({ history }) {
@@ -87,7 +88,7 @@ export default function RoomReservationPage({ history }) {
                             <li>No rooms available</li>
                         )}
                     </nav>
-                    <button>Book Now</button>
+                    <Button to="/payment" label="Book Now" variant="filled" />
                 </div>
             </section>
             {/* Room Images */}
@@ -131,11 +132,11 @@ export default function RoomReservationPage({ history }) {
                             onIncrementAdult={() => setAdults(adults + 1)}
                             onDecrementAdult={() => setAdults(adults - 1)}
                             onIncrementChild={() => setChildren(children + 1)}
-                            onDecrementChild={() => setChildren(children - 1)} 
+                            onDecrementChild={() => setChildren(children - 1)}
                         />
                     </div>
                     <div className='flex flex-col gap-4 text-sm'>
-                        <button>Book Now</button>
+                        <Button to="/payment" label="Book Now" variant="filled" />
                         <div className='flex justify-between'>
                             <p>${roomPrice} x {nights} nights</p>
                             <p>${totalRoomCost}</p>
