@@ -8,6 +8,10 @@ const initialState = {
     filteredRooms: [],
     checkInDate: null,
     checkOutDate: null,
+    guests: {
+        adults: 2,
+        children: 0,
+    },
     status: "idle",
     error: null
 }
@@ -33,6 +37,9 @@ const hotelSlice = createSlice({
         setCheckOutDate: (state, action) => {
             state.checkOutDate = action.payload;
         },
+        setGuests: (state, action) => {
+            state.guests = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -51,7 +58,7 @@ const hotelSlice = createSlice({
     }
 });
 
-export const { setRooms, setFilteredRooms, setCheckInDate, setCheckOutDate } = hotelSlice.actions;
+export const { setRooms, setFilteredRooms, setCheckInDate, setCheckOutDate, setGuests } = hotelSlice.actions;
 export default hotelSlice.reducer;
 
 
