@@ -13,13 +13,13 @@ export default function ContactPage() {
 
       {/* Title*/}
       <section>
-        <h1 className='text-lightpink font-playfair text-3xl font-semibold mb-8'>Get In Touch</h1>
+        <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8'>Get In Touch</h1>
       </section>
       <p className='font-light w-2/3 text-center'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut nim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 
       {/* Services*/}
       <section>
-        <h1 className='text-lightpink font-playfair text-3xl font-semibold mb-8 text-center'>Location</h1>
+        <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8 text-center'>Location</h1>
         <HotelLocation />
       </section>
 

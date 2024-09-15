@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import mockComments from '../mockComments.js';
+import mockComments from '../mock/mockComments.js';
 import CommentCard from '../cards/CommentCard.jsx';
 
 export default function Comments() {

@@ -5,6 +5,7 @@ import AboutPage from '../pages/AboutPage'
 import RoomPage from '../pages/RoomPage'
 import ContactPage from '../pages/ContactPage'
 import RoomReservationPage from '../pages/RoomReservationPage'
+import PaymentPage from '../pages/PaymentPage'
 
 export default function PageContent() {
   return (
@@ -15,6 +16,7 @@ export default function PageContent() {
         <Route exact path="/rooms"  component={RoomPage} />
         <Route exact path="/rooms/reservation"  component={RoomReservationPage} />
         <Route exact path="/contact"  component={ContactPage} />
+        <Route exact path="/payment"  component={PaymentPage} />
       </Switch>
 
     </>
