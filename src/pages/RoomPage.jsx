@@ -2,20 +2,22 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import RoomCard from '../cards/RoomCard';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import GuestControl from '../shared/GuestControl';
 import PriceSlider from '../shared/PriceSlider';
 import ServiceFilter from '../shared/ServiceFilter';
+import CheckInPicker from '../shared/CheckInPicker';
+import CheckOutPicker from '../shared/CheckOutPicker';
 
 export default function RoomPage() {
-  const [checkInDate, setCheckInDate] = useState(null);
-  const [checkOutDate, setCheckOutDate] = useState(null);
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
 
   const dispatch = useDispatch();
   const rooms = useSelector(state => state.hotel.rooms);
+  const checkInDate = useSelector(state => state.hotel.checkInDate);
+  const checkOutDate = useSelector(state => state.hotel.checkOutDate);
+  
   const [searchParams, setSearchParams] = useState({
     checkInDate: null,
     checkOutDate: null,
@@ -67,15 +69,12 @@ export default function RoomPage() {
       </nav>
 
       {/* Title*/}
-      <section className='flex justify-between'>
+      <section>
         <h1 className='text-lightpink font-playfair text-3xl font-semibold'>Rooms & Suits</h1>
-        <button onClick={handleSearch} className='bg-lightpink text-white px-3 py-1 rounded-2xl'>
-          Find Your Room
-        </button>
       </section>
 
       {/* Categories*/}
-      <section>
+      <section className='flex justify-between items-center'>
         <nav className='flex gap-8 list-none'>
           <li className="custom-hover">All</li>
           <li className="custom-hover">Classic Rooms</li>
@@ -83,6 +82,9 @@ export default function RoomPage() {
           <li className="custom-hover">Business Suites</li>
           <li className="custom-hover">Executive Suites</li>
         </nav>
+        <button onClick={handleSearch} className='bg-lightpink text-white px-3 py-1 rounded-2xl'>
+          Find Your Room
+        </button>
       </section>
 
       <div className='flex'>
@@ -97,19 +99,11 @@ export default function RoomPage() {
           }
         </section >
         {/* Search Filters */}
-        <section className='flex flex-col items-center justify-between border-2 rounded-xl p-2  w-1/3' >
-          {['Check In', 'Check Out'].map((label, index) => (
-            <div key={index} className="flex flex-col items-center">
-              <i className="fa-solid fa-calendar-days" />
-              <label className="text-sm font-semibold">{label}</label>
-              <DatePicker
-                selected={index === 0 ? checkInDate : checkOutDate}
-                onChange={date => index === 0 ? setCheckInDate(date) : setCheckOutDate(date)}
-                placeholderText="Add Date"
-                className="text-center bg-transparent focus:outline-none cursor-pointer"
-              />
-            </div>
-          ))}
+        <section className='flex flex-col items-center justify-between border-2 rounded-xl p-2  w-1/4' >
+          <div className="flex">
+            <CheckInPicker/>
+            <CheckOutPicker/>
+          </div>
           <GuestControl
             adults={adults}
             children={children}

@@ -4,9 +4,11 @@ import axios from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const initialState = {
-    rooms : [],
+    rooms: [],
     filteredRooms: [],
-    status : "idle",
+    checkInDate: null,
+    checkOutDate: null,
+    status: "idle",
     error: null
 }
 
@@ -24,7 +26,13 @@ const hotelSlice = createSlice({
         },
         clearFilteredRooms: (state) => {
             state.filteredRooms = state.rooms;
-        }
+        },
+        setCheckInDate: (state, action) => {
+            state.checkInDate = action.payload;
+        },
+        setCheckOutDate: (state, action) => {
+            state.checkOutDate = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -38,12 +46,12 @@ const hotelSlice = createSlice({
             })
             .addCase(fetchRooms.rejected, (state, action) => {
                 state.status = "Failed";
-                state.error = action.error.message; 
+                state.error = action.error.message;
             });
     }
 });
 
-export const { setFilteredRooms } = hotelSlice.actions;
+export const { setRooms, setFilteredRooms, setCheckInDate, setCheckOutDate } = hotelSlice.actions;
 export default hotelSlice.reducer;
 
 
