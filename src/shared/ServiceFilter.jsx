@@ -49,7 +49,7 @@ const ServiceFilter = ({ services, onChange }) => {
                             <p className="text-sm font-semibold">Kitchen</p>
                             <input
                                 type="checkbox"
-                                className="appearance-none w-6 h-6 bg-oceanBlue/50 rounded focus:ring-0 hover:bg-oceanBlue hover:text-white checked:bg-oceanBlue checked:after:content-['✓'] checked:after:text-white checked:after:flex checked:after:items-center checked:after:justify-center checked:after:text-lg"
+                                className="custom-checkbox"
                                 name="kitchen"
                                 checked={services.kitchen}
                                 onChange={handleCheckboxChange}
@@ -59,7 +59,7 @@ const ServiceFilter = ({ services, onChange }) => {
                             <p className="text-sm font-semibold">Free WiFi</p>
                             <input
                                 type="checkbox"
-                                className="appearance-none w-6 h-6 bg-oceanBlue/50 rounded focus:ring-0 hover:bg-oceanBlue hover:text-white checked:bg-oceanBlue checked:after:content-['✓'] checked:after:text-white checked:after:flex checked:after:items-center checked:after:justify-center checked:after:text-lg"
+                                className="custom-checkbox"
                                 name="wifi"
                                 checked={services.wifi}
                                 onChange={handleCheckboxChange}

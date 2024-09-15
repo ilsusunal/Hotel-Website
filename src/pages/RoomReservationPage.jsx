@@ -21,6 +21,8 @@ export default function RoomReservationPage({ history }) {
     const roomsByType = filteredRooms.filter(room => room.type === selectedType);
     const roomDetails = roomsByType.length > 0 ? roomsByType[0] : null;
 
+    const [addBreakfast, setAddBreakfast] = useState(false);
+
     useEffect(() => {
         if (!filteredRooms || filteredRooms.length === 0) {
             history.push('/rooms');
@@ -49,7 +51,7 @@ export default function RoomReservationPage({ history }) {
     const nights = calculateNights();
     const roomPrice = roomDetails ? roomDetails.price_per_night : 0;
     const totalRoomCost = roomPrice * nights;
-    const breakfastCost = 200 * nights;
+    const breakfastCost = addBreakfast ? 200 * nights : 0;
     const taxes = totalRoomCost * 0.2;
     const finalTotal = totalRoomCost + breakfastCost + taxes;
 
@@ -163,7 +165,16 @@ export default function RoomReservationPage({ history }) {
                             <p>${taxes}</p>
                         </div>
                         <div className='flex justify-between border-b pb-4'>
-                            <p>Add Breakfast</p>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    className='custom-checkbox'
+                                    checked={addBreakfast}
+                                    onChange={() => setAddBreakfast(!addBreakfast)}
+                                />
+                                <span className="ml-2">Add Breakfast</span>
+                                <p className='mt-1 text-xs font-light'>( $200 x {nights} nights )</p>
+                            </label>
                             <p>${breakfastCost}</p>
                         </div>
                         <div className='flex justify-between'>

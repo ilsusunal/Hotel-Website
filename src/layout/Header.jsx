@@ -23,9 +23,9 @@ export default function Header() {
     return (
         <header className='w-full bg-stone-100 font-semibold'>
             <div className='flex justify-around items-center py-8 px-4'>
-                <section className='flex gap-4 items-center'>
+                <section className='flex gap-4 items-center text-oceanBlue'>
                     <i className="fa-solid fa-hotel" />
-                    <h1 className='text-2xl'>Hotel İzmir</h1>
+                    <h1 className='text-2xl font-playfair '>Hotel İzmir</h1>
                 </section>
                 {/* Desktop Nav */}
                 <nav className='hidden md:flex gap-8 items-center font-normal'>

@@ -16,6 +16,11 @@
   @apply text-oceanBlue underline underline-offset-4 decoration-2;
 }
 
+.custom-checkbox {
+  @apply appearance-none w-4 h-4 border-2 border-oceanBlue rounded focus:ring-0 hover:bg-oceanBlue hover:text-white checked:bg-oceanBlue checked:after:content-['✓'] checked:after:text-white checked:after:flex checked:after:items-center checked:after:justify-center checked:after:text-xs;
+}
+
+
 .slider {
   -webkit-appearance: none;
   appearance: none;
