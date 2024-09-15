@@ -18,8 +18,8 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form*/}
-      <section className='flex flex-col md:flex-row items-center gap-12 my-20 p-8'>
-        <p className='font-light w-2/3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut nim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <section className='flex flex-col md:flex-row items-center gap-12 my-20 md:p-8 p-2'>
+        <p className='font-light md:w-2/3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut nim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
         <ContactForm />
       </section>
 

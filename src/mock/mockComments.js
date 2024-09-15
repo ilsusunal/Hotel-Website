@@ -1,3 +1,5 @@
+//To use in components > Comments.jsx
+
 const mockComments = [
     {
       "commenter": "Jane Doe",

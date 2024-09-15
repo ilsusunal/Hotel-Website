@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import RoomCard from '../cards/RoomCard';
@@ -8,104 +8,63 @@ import PriceSlider from '../shared/PriceSlider';
 import ServiceFilter from '../shared/ServiceFilter';
 import CheckInPicker from '../shared/CheckInPicker';
 import CheckOutPicker from '../shared/CheckOutPicker';
-import { setFilteredRooms, setGuests  } from '../store/hotelSlice';
+import { setFilteredRooms, setGuests, setCheckInDate, setCheckOutDate } from '../store/hotelSlice';
 import Button from '../shared/button';
 
-export default function RoomPage() {
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-  const [filteredRooms, setFilteredRoomsUI] = useState(null);
+const MIN_PRICE = 0;
+const MAX_PRICE = 300;
 
+const getUniqueRoomTypes = (rooms) => {
+  const roomTypesMap = {};
+  rooms.forEach(room => {
+    if (!roomTypesMap[room.type]) {
+      roomTypesMap[room.type] = room;
+    }
+  });
+  return Object.values(roomTypesMap);
+};
+
+export default function RoomPage() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const rooms = useSelector(state => state.hotel.rooms);
-  const checkInDate = useSelector(state => state.hotel.checkInDate);
-  const checkOutDate = useSelector(state => state.hotel.checkOutDate);
+  const { rooms, adults, children, filteredRooms } = useSelector(state => state.hotel);
 
-  const [searchParams, setSearchParams] = useState({
-    checkInDate: null,
-    checkOutDate: null,
-    adults: 1,
-    children: 0,
-    minPrice: 0,
-    maxPrice: 300,
+  const [filterCriteria, setFilterCriteria] = useState({
+    minPrice: MIN_PRICE,
+    maxPrice: MAX_PRICE,
     kitchen: false,
-    wifi: false,
+    wifi: false
   });
 
-  useEffect(() => {
-    setSearchParams(prev => ({
-      ...prev,
-      checkInDate,
-      checkOutDate
-    }));
-  }, [checkInDate, checkOutDate]);
-
-  const getUniqueRoomTypes = (rooms) => {
-    const roomTypesMap = {};
-    rooms.forEach(room => {
-      if (!roomTypesMap[room.type]) {
-        roomTypesMap[room.type] = room;
-      }
-    });
-    return Object.values(roomTypesMap);
-  };
-
-  useEffect(() => {
-    console.log("Rooms:", rooms);
-    const uniqueRooms = getUniqueRoomTypes(rooms);
-    setFilteredRoomsUI(uniqueRooms);
-  }, [rooms]);
-
-  useEffect(() => {
-    console.log("Updated Search Params:", searchParams);
-  }, [searchParams]);
-
   const handlePriceChange = (minPrice, maxPrice) => {
-    setSearchParams(prev => ({
+    setFilterCriteria(prev => ({
       ...prev,
       minPrice,
-      maxPrice
+      maxPrice,
     }));
   };
 
-  const handleServiceChange = (name, checked) => {
-    console.log("Service Change:", name, checked);
-    setSearchParams(prev => ({
+  const handleServiceChange = (name, value) => {
+    setFilterCriteria(prev => ({
       ...prev,
-      [name]: checked,
+      [name]: value,
     }));
   };
 
-  const handleGuestChange = (newAdults, newChildren) => {
-    setAdults(newAdults);
-    setChildren(newChildren);
-    setSearchParams(prev => ({
-      ...prev,
-      adults: newAdults,
-      children: newChildren
-    }));
-    dispatch(setGuests({ adults: newAdults, children: newChildren }));
-  };
+  const filterByPrice = (room) => room.price_per_night >= filterCriteria.minPrice && room.price_per_night <= filterCriteria.maxPrice;
+  const filterByServices = (room) => (!filterCriteria.kitchen || room.kitchen) && (!filterCriteria.wifi || room.wifi);
+  const filterByAvailability = (room) => room.availability === "Available";
+  const filterByGuests = (room) => room.maxPersons.adults >= adults && room.maxPersons.children >= children;
 
-  const handleSearch = (e) => {
+  const filterRooms = (e) => {
     e.preventDefault();
-
-    console.log("Search Params:", searchParams);  
-    console.log("Rooms:", rooms);
-
-    dispatch(setGuests({ adults, children }));
-
-    const filtered = rooms.filter(room => {
-      const withinPriceRange = room.price_per_night >= searchParams.minPrice && room.price_per_night <= searchParams.maxPrice;
-      const hasKitchen = !searchParams.kitchen || room.kitchen;
-      const hasWifi = !searchParams.wifi || room.wifi;
-      const meetsGuestRequirements = room.maxPersons.adults >= searchParams.adults &&
-                                   room.maxPersons.children >= searchParams.children;
-      return withinPriceRange && hasKitchen && hasWifi && meetsGuestRequirements;
-    });
-    const uniqueFilteredRooms = getUniqueRoomTypes(filtered);
-    setFilteredRoomsUI(uniqueFilteredRooms);
+    const filtered = rooms.filter(room =>
+      filterByPrice(room) &&
+      filterByServices(room) &&
+      filterByAvailability(room) &&
+      filterByGuests(room)
+    );
+    dispatch(setFilteredRooms(getUniqueRoomTypes(filtered)));
   };
 
   const handleBookNow = (room) => {
@@ -113,7 +72,20 @@ export default function RoomPage() {
     history.push(`/rooms/reservation?roomType=${room.type}`);
   };
 
-  const roomsToDisplay = filteredRooms || getUniqueRoomTypes(rooms);
+  const roomsToDisplay = filteredRooms.length ? filteredRooms : getUniqueRoomTypes(rooms);
+
+  const handleAllButtonClick = () => {
+    setFilterCriteria({
+      minPrice: MIN_PRICE,
+      maxPrice: MAX_PRICE,
+      kitchen: false,
+      wifi: false
+    });
+    dispatch(setGuests({ adults: 1, children: 0 }));
+    dispatch(setCheckInDate(null)); 
+    dispatch(setCheckOutDate(null));
+  };
+
 
   return (
     <div className='w-2/3 m-12 space-y-8'>
@@ -123,50 +95,43 @@ export default function RoomPage() {
         <Link to="/rooms" className="custom-hover text-sm text-oceanBlue">Rooms</Link>
       </nav>
 
-      {/* Title*/}
       <section>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8'>Rooms & Suits</h1>
       </section>
 
-      {/* Search*/}
       <section className='flex items-center'>
-        <form onSubmit={handleSearch} className='flex flex-wrap gap-4 items-center justify-between w-full' >
-          {/* Filters*/}
+        <form onSubmit={filterRooms} className='flex flex-wrap gap-4 items-center justify-between w-full'>
           <CheckInPicker />
           <CheckOutPicker />
           <GuestControl
             adults={adults}
             children={children}
-            onIncrementAdult={() => handleGuestChange(adults + 1, children)}
-            onDecrementAdult={() => handleGuestChange(adults - 1, children)}
-            onIncrementChild={() => handleGuestChange(adults, children + 1)}
-            onDecrementChild={() => handleGuestChange(adults, children - 1)}
+            onIncrementAdult={() => dispatch(setGuests({ adults: adults + 1, children }))}
+            onDecrementAdult={() => dispatch(setGuests({ adults: adults - 1, children }))}
+            onIncrementChild={() => dispatch(setGuests({ adults, children: children + 1 }))}
+            onDecrementChild={() => dispatch(setGuests({ adults, children: children - 1 }))}
           />
           <PriceSlider
-            minPrice={searchParams.minPrice}
-            maxPrice={searchParams.maxPrice}
+            minPrice={filterCriteria.minPrice}
+            maxPrice={filterCriteria.maxPrice}
             onChange={handlePriceChange}
           />
           <ServiceFilter
-            services={{ kitchen: searchParams.kitchen, wifi: searchParams.wifi }}
+            services={{ kitchen: filterCriteria.kitchen, wifi: filterCriteria.wifi }}
             onChange={handleServiceChange}
           />
-          {/* Buttons*/}
           <div className='flex text-lg items-center'>
             <Button type="submit" label="Filter" variant="text" />
-            <div className='w-2 h-2 rounded-full bg-oceanBlue'></div>
-            <Button onClick={() => setFilteredRoomsUI(null)} label="All" variant="text" />
+            <Button onClick={handleAllButtonClick} label="All" variant="text" />
           </div>
         </form>
-
       </section>
 
-      {/* Rooms*/}
-      <section className='flex flex-col flex-wrap gap-4' >
+      <section className='flex flex-col flex-wrap gap-4'>
         {roomsToDisplay.map(room => (
           <RoomCard key={room.id} roomDetails={room} onBookNow={() => handleBookNow(room)} />
         ))}
-      </section >
-    </div >
+      </section>
+    </div>
   );
 }

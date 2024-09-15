@@ -6,7 +6,7 @@ export default function RoomCard({ roomDetails, onBookNow }) {
     <div className='bg-white border-stone-200 border-2 rounded-2xl flex flex-col md:flex-row'>
       {/*Room image */}
       <img src={roomDetails.images[0]} alt={roomDetails.name} className='rounded-2xl md:w-1/2 object-cover' />
-      <section className='p-4 md:p-12'>
+      <section className='p-4 md:p-8'>
         <h2 className='font-playfair text-2xl font-semibold mb-2'>{roomDetails.type}</h2>
         {/* Description */}
         <section className='gap-2 font-light border-b-2 py-8 text-sm'>
@@ -25,7 +25,7 @@ export default function RoomCard({ roomDetails, onBookNow }) {
         {/* Services */}
         <section className='flex justify-around text-stone-400 gap-2 border-b-2 py-4 font-light text-sm'>
           <div className='flex flex-col items-center'>
-            <i className="fa-regular fa-square mr-4" />
+            <i className="fa-solid fa-maximize mr-4" />
             <p className='mt-2'>{roomDetails.sq2} m²</p>
           </div>
           <div className='flex flex-col items-center'>

@@ -6,6 +6,7 @@ import mockAbout from '../mock/mockAbout.js';
 export default function AboutPage() {
   const [selectedSection, setSelectedSection] = useState("History");
 
+  //Show the text and image according to nav bar
   const getSelectedText = () => {
     const selectedIntro = mockAbout.find(item => item.name === selectedSection);
     return selectedIntro ? selectedIntro.text : "";
@@ -41,8 +42,8 @@ export default function AboutPage() {
       </section>
 
       {/* Intro Text */}
-      <section className="flex flex-col md:flex-row items-center gap-12 my-20 p-8">
-        <p className='font-light px-18 w-1/2'>{getSelectedText()}</p>
+      <section className="flex flex-col md:flex-row items-center gap-12 my-20 md:p-8">
+        <p className='font-light p-4 md:px-18 md:w-1/2'>{getSelectedText()}</p>
         <div className="relative p-2 md:w-1/2 h-auto">
           <div className="absolute w-full h-full bg-sandyBeige/20 rounded-2xl rotate-6 top-2 left-1"></div>
           <img src={getSelectedImage()} alt="Some Hotel" className="w-full h-full rounded-2xl shadow-lg relative z-10" />
@@ -52,7 +53,7 @@ export default function AboutPage() {
       {/* Services*/}
       <section className="py-16">
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold text-center pb-16'>Services</h1>
-        <div className='flex justify-around text-stone-400 py-8'>
+        <div className='flex flex-wrap gap-2 justify-around text-stone-400 py-8'>
           <div className='flex flex-col items-center hover:text-oceanBlue border-2 rounded-xl border-stone-100 p-4 hover:border-oceanBlue/50'>
             <i className="fa-solid fa-utensils fa-2x mb-2" />
             <p className='mt-2 text-center my-4 font-medium'>Restaurant</p>
@@ -85,7 +86,7 @@ export default function AboutPage() {
       </section>
 
       {/* Top Comments*/}
-      < section  >
+      < section  className='w-full'>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold text-center'>Testimonials</h1>
         <Comments />
       </ section>

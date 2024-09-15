@@ -23,7 +23,7 @@ export default function RoomDetails({ roomDetails }) {
       <h3 className='text-sunsetCoral font-playfair text-xl font-semibold'>What Do We Offer</h3>
       <section className='gap-2 border-b-2 px-6 pb-8 text-stone-400'>
         <p className='mt-2'>
-          <i className="fa-regular fa-square mr-4" />
+          <i className="fa-solid fa-maximize mr-4" />
           {roomDetails.sq2} m²
         </p>
         <p className='mt-2'>

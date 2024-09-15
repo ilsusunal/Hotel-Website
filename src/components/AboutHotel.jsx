@@ -10,8 +10,8 @@ export default function AboutHotel() {
                 <p className='font-light max-w-96'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut nim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                 <Button to="/about" label="About Us" variant="accent" />
             </div>
-            <div className="relative p-8 md:w-1/2 h-auto">
-                <div className="absolute w-full h-full bg-sandyBeige/20 rounded-2xl rotate-6 top-4 left-4"></div>
+            <div className="relative p-4 md:w-1/2 h-auto">
+                <div className="absolute w-full h-full bg-sandyBeige/20 rounded-2xl rotate-6 top-2 left-4"></div>
                 <img src={Pool} alt="Some Hotel" className="w-full h-auto rounded-2xl shadow-lg relative z-10" />
             </div>
         </section>

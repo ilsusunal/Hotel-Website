@@ -21,7 +21,7 @@ export default function RoomTypeCard() {
         {/* Services */}
         <div className='flex justify-around text-stone-400 my-4'>
           <div className='flex flex-col items-center'>
-            <i className="fa-regular fa-square mr-4" />
+            <i className="fa-solid fa-maximize mr-4" />
             <p className='mt-2'>{room.sq2} m²</p>
           </div>
           <div className='flex flex-col items-center'>

@@ -2,6 +2,7 @@ import Pool from "/Pool.jpg"
 import Bar from "/Bar.jpg"
 import Service from "/Service.jpg"
 
+//To use in pages > AboutPage.jsx
 const about = [
     {
       name: "History",

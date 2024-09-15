@@ -5,6 +5,7 @@ export default function Header() {
     const [hamburger, setHamburger] = useState(false);
     const location = useLocation();
 
+    // Handling hamburger menu in mobile view
     const handleHamburger = () => {
         if (!hamburger) {
             setHamburger(true);
@@ -13,6 +14,7 @@ export default function Header() {
         }
     }
 
+    // Highlight the active link in navbar
     const isActive = (path) => {
         return location.pathname === path || location.pathname.startsWith(path + '/') ? 'active' : '';
     };

@@ -15,10 +15,15 @@ const initialState = {
     error: null
 }
 
-export const fetchRooms = createAsyncThunk("", async () => {
-    const response = await axios.get(`${BASE_URL}/hotelData`);
-    return response.data;
+export const fetchRooms = createAsyncThunk("hotel/fetchRooms", async (_, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/hotelData`);
+        return response.data;
+    } catch (error) {
+        return rejectWithValue(error.response.data);
+    }
 });
+
 
 const hotelSlice = createSlice({
     name: "hotel",
@@ -28,7 +33,7 @@ const hotelSlice = createSlice({
             state.filteredRooms = action.payload;
         },
         clearFilteredRooms: (state) => {
-            state.filteredRooms = state.rooms;
+            state.filteredRooms = [...state.rooms];
         },
         setCheckInDate: (state, action) => {
             state.checkInDate = action.payload;
@@ -61,7 +66,7 @@ const hotelSlice = createSlice({
     }
 });
 
-export const { setRooms, setFilteredRooms, setCheckInDate, setCheckOutDate, setGuests, setSelectedRoomType } = hotelSlice.actions;
+export const { setFilteredRooms, clearFilteredRooms, setCheckInDate, setCheckOutDate, setGuests, setSelectedRoomType } = hotelSlice.actions;
 export default hotelSlice.reducer;
 
 

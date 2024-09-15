@@ -2,10 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const ServiceFilter = ({ services, onChange }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [totalChecked, setTotalChecked] = useState(0);
     const dropdownRef = useRef(null);
-    let totalChecked = 0;
 
-    // Close dropdown if clicking outside
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -19,17 +18,17 @@ const ServiceFilter = ({ services, onChange }) => {
         };
     }, [dropdownRef]);
 
+    useEffect(() => {
+        setTotalChecked(Object.values(services).filter(service => service).length);
+    }, [services]);
+
     const handleCheckboxChange = (e) => {
         const { name, checked } = e.target;
         onChange(name, checked);
-        if (!checked && totalChecked >= 0) {
-            totalChecked--;
-        } else {
-            totalChecked++;
-        }
+        setTotalChecked(prevTotal =>
+            checked ? prevTotal + 1 : prevTotal - 1
+        );
     };
-
-
 
     return (
         <div className="flex flex-col items-center relative" ref={dropdownRef}>
