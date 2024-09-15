@@ -97,7 +97,7 @@ export default function RoomPage() {
       {/* Search*/}
       <section className='flex justify-between items-center'>
         {/* Filters*/}
-        <section className='flex items-center justify-between w-3/4' >
+        <section className='flex flex-wrap gap-4 items-center justify-between w-3/4' >
           <CheckInPicker />
           <CheckOutPicker />
           <GuestControl

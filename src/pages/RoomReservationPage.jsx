@@ -92,18 +92,18 @@ export default function RoomReservationPage({ history }) {
                 </div>
             </section>
             {/* Room Images */}
-            <section className='grid grid-cols-5 gap-2 grid-rows-2 h-80'>
+            <section className='grid grid-cols-2 gap-2 grid-rows-3 h-80 md:grid-cols-5 md:grid-rows-2'>
                 <img
                     src={roomDetails.images[0]}
                     alt="Room Image 1"
-                    className='col-span-3 row-span-2 object-cover w-full h-full rounded'
+                    className='col-span-2 row-span-1 object-cover w-full h-full rounded md:col-span-3 md:row-span-2'
                 />
                 {roomDetails.images.slice(1, 3).map((image, index) => (
                     <img
                         key={index}
                         src={image}
                         alt={`Room Image ${index + 2}`}
-                        className='object-cover w-full h-full rounded'
+                        className='hidden md:block object-cover w-full h-full rounded'
                     />
                 ))}
                 {roomDetails.images.slice(3, 5).map((image, index) => (
@@ -111,15 +111,32 @@ export default function RoomReservationPage({ history }) {
                         key={index}
                         src={image}
                         alt={`Room Image ${index + 4}`}
-                        className='object-cover w-full h-full rounded'
+                        className='hidden md:block object-cover w-full h-full rounded'
+                    />
+                ))}
+                {roomDetails.images.slice(1, 3).map((image, index) => (
+                    <img
+                        key={index}
+                        src={image}
+                        alt={`Room Image ${index + 2}`}
+                        className='block md:hidden col-span-1 row-span-1 object-cover w-full h-full rounded'
+                    />
+                ))}
+                {roomDetails.images.slice(3, 5).map((image, index) => (
+                    <img
+                        key={index}
+                        src={image}
+                        alt={`Room Image ${index + 4}`}
+                        className='block md:hidden col-span-1 row-span-1 object-cover w-full h-full rounded'
                     />
                 ))}
             </section>
+
             {/* Room Description & Reservation Box */}
             <section className='flex flex-col md:flex-row gap-6'>
                 <RoomDetails roomDetails={roomDetails} />
                 {/* Reservation Box */}
-                <div className='w-2/5 border-2 rounded-2xl p-8 h-full'>
+                <div className='md:w-2/5 border-2 rounded-2xl p-8 h-full'>
                     <p className='font-semibold text-xl font-playfair'>${roomDetails.price_per_night} per night</p>
                     <div className='border-y-2 p-8 h-auto m-4 flex flex-col items-center'>
                         <div className='flex items-center border-b pb-4 mb-4'>
