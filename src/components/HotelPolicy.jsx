@@ -4,7 +4,7 @@ import Button from '../shared/button'
 export default function HotelPolicy() {
     return (
         <>
-            <h3 className='text-lightpink font-playfair text-xl font-semibold'>Things To Know</h3>
+            <h3 className='text-sunsetCoral font-playfair text-xl font-semibold'>Things To Know</h3>
             <div className='gap-8 border-b-2 px-6 pb-8'>
                 <div className='flex gap-8 mb-8'>
                     <div>
@@ -34,7 +34,7 @@ export default function HotelPolicy() {
                     </ul>
                 </div>
             </div>
-            <h3 className='text-lightpink font-playfair text-xl font-semibold'>Need Help in Booking?</h3>
+            <h3 className='text-sunsetCoral font-playfair text-xl font-semibold'>Need Help in Booking?</h3>
             <div className='gap-2 px-6 pb-8'>
                 <h3 className='font-playfair text-xl font-semibold mb-6'>Contact : </h3>
                 <ul className='font-light text-sm space-y-2'>

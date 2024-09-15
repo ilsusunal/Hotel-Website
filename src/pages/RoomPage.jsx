@@ -88,20 +88,6 @@ export default function RoomPage() {
     dispatch(setGuests({ adults: newAdults, children: newChildren }));
   };
 
-  const handleCheckInChange = (date) => {
-    setSearchParams(prev => ({
-      ...prev,
-      checkInDate: date
-    }));
-  };
-
-  const handleCheckOutChange = (date) => {
-    setSearchParams(prev => ({
-      ...prev,
-      checkOutDate: date
-    }));
-  };
-
   const handleSearch = (e) => {
     e.preventDefault();
 
@@ -166,8 +152,9 @@ export default function RoomPage() {
             onChange={handleServiceChange}
           />
           {/* Buttons*/}
-          <div className='flex'>
+          <div className='flex text-lg items-center'>
             <Button type="submit" label="Filter" variant="text" />
+            <div className='w-2 h-2 rounded-full bg-oceanBlue'></div>
             <Button onClick={() => setFilteredRoomsUI(null)} label="All" variant="text" />
           </div>
         </form>

@@ -66,7 +66,7 @@ export default function RoomReservationPage({ history }) {
             {/* Title and Room Types */}
             <section className='space-y-4'>
                 <div className='flex justify-between mb-8'>
-                    <h1 className='text-lightpink font-playfair text-3xl font-semibold'>Available Rooms</h1>
+                    <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold'>Available Rooms</h1>
                     <div className='flex gap-4 items-end'>
                         <p className='font-playfair text-3xl font-semibold'>${roomDetails.price_per_night}</p>
                         <p>per night</p>
@@ -78,7 +78,7 @@ export default function RoomReservationPage({ history }) {
                             roomTypes.map((type, index) => (
                                 <li
                                     key={index}
-                                    className={`custom-hover ${selectedType === type ? 'font-bold text-lightpink' : ''}`}
+                                    className={`custom-hover ${selectedType === type ? 'active' : ''}`}
                                     onClick={() => setSelectedType(type)}
                                 >
                                     {type}
@@ -138,7 +138,7 @@ export default function RoomReservationPage({ history }) {
                 {/* Reservation Box */}
                 <div className='md:w-2/5 border-2 rounded-2xl p-8 h-full'>
                     <p className='font-semibold text-xl font-playfair'>${roomDetails.price_per_night} per night</p>
-                    <div className='border-y-2 p-8 h-auto m-4 flex flex-col items-center'>
+                    <div className='border-y-2 p-4 h-auto m-4 flex flex-col items-center'>
                         <div className='flex items-center border-b pb-4 mb-4'>
                             <CheckInPicker />
                             <CheckOutPicker />

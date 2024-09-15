@@ -14,15 +14,17 @@ const CheckOutPicker = () => {
   };
 
   return (
-    <div className="flex flex-col items-center max-w-24">
-      <i className="fa-solid fa-calendar-days" />
-      <label className="text-sm font-semibold">Check Out</label>
+    <div className="flex flex-col items-center max-w-28">
+      <div className='flex gap-2'>
+        <i className="fa-solid fa-calendar-days text-oceanBlue" />
+        <p className="text-sm font-semibold">Check Out</p>
+      </div>
       <DatePicker
         selected={checkOutDate}
         onChange={handleDateChange}
         placeholderText="Add Date"
         minDate={checkInDate ? new Date(checkInDate).setDate(new Date(checkInDate).getDate() + 1) : new Date()}
-        className="text-center text-sm bg-transparent focus:outline-none cursor-pointer"
+        className="text-center font-light mt-1 text-sm bg-transparent focus:outline-none cursor-pointer"
       />
     </div>
   );

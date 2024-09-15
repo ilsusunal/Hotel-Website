@@ -22,20 +22,22 @@ const GuestControl = ({ adults, children, onIncrementAdult, onDecrementAdult, on
     return (
         <div className="flex flex-col items-center relative" ref={dropdownRef}>
             <div className="flex flex-col text-center cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                <i className="fa-solid fa-user-group" />
-                <label className="text-sm font-semibold">Guests</label>
-                <p >{totalPeople}</p>
+                <div className='flex gap-2'>
+                    <i className="fa-solid fa-user-group text-oceanBlue" />
+                    <p className="text-sm font-semibold">Guests</p>
+                </div>
+                <p className='font-light text-sm mt-1'> ( {totalPeople} )</p>
             </div>
             {dropdownOpen && (
-                <div className="absolute bg-white rounded-md border-2 mt-2 p-4 w-52 top-16 z-10">
+                <div className="absolute bg-white border-stone-200 border-2 rounded-2xl mt-2 p-4 w-52 top-12 z-10">
                     <div className="flex items-center justify-between mb-2">
-                        <label className="text-sm font-semibold">Adults</label>
+                        <p className="text-sm font-semibold">Adults</p>
                         <div className="flex justify-end items-center space-x-2">
                             <button
                                 type="button"
                                 onClick={onDecrementAdult}
                                 disabled={adults === 1}
-                                className="w-6 h-6 bg-gray-300 rounded-full text-center text-xs"
+                                className="w-6 h-6 bg-oceanBlue/50 hover:bg-oceanBlue hover:text-white rounded-full text-center text-xs"
                             >
                                 -
                             </button>
@@ -43,20 +45,20 @@ const GuestControl = ({ adults, children, onIncrementAdult, onDecrementAdult, on
                             <button
                                 type="button"
                                 onClick={onIncrementAdult}
-                                className="w-6 h-6 bg-gray-300 rounded-full text-center"
+                                className="w-6 h-6 bg-oceanBlue/50 hover:bg-oceanBlue hover:text-white rounded-full text-center"
                             >
                                 +
                             </button>
                         </div>
                     </div>
                     <div className="flex items-center justify-between">
-                        <label className="text-sm font-semibold">Children</label>
+                        <p className="text-sm font-semibold">Children</p>
                         <div className="flex items-center space-x-2">
                             <button
                                 type="button"
                                 onClick={onDecrementChild}
                                 disabled={children === 0}
-                                className="w-6 h-6 bg-gray-300 rounded-full text-center"
+                                className="w-6 h-6 bg-oceanBlue/50 hover:bg-oceanBlue hover:text-white rounded-full text-center"
                             >
                                 -
                             </button>
@@ -64,7 +66,7 @@ const GuestControl = ({ adults, children, onIncrementAdult, onDecrementAdult, on
                             <button
                                 type="button"
                                 onClick={onIncrementChild}
-                                className="w-6 h-6 bg-gray-300 rounded-full text-center"
+                                className="w-6 h-6 bg-oceanBlue/50 hover:bg-oceanBlue hover:text-white rounded-full text-center"
                             >
                                 +
                             </button>
