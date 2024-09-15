@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import HotelLocation from '../components/HotelLocation'
-import ContactForm from '../components/contactForm'
+import ContactForm from '../components/contact/ContactForm'
+import HotelLocation from '../components/common/HotelLocation'
 
 export default function ContactPage() {
   return (

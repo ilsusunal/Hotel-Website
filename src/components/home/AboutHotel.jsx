@@ -1,6 +1,6 @@
 import React from 'react'
 import Pool from "/Pool.jpg"
-import Button from '../shared/button'
+import Button from '../../shared/button'
 
 export default function AboutHotel() {
     return (

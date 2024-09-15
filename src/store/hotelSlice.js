@@ -32,9 +32,6 @@ const hotelSlice = createSlice({
         setFilteredRooms: (state, action) => {
             state.filteredRooms = action.payload;
         },
-        clearFilteredRooms: (state) => {
-            state.filteredRooms = [...state.rooms];
-        },
         setCheckInDate: (state, action) => {
             state.checkInDate = action.payload;
         },
@@ -66,7 +63,7 @@ const hotelSlice = createSlice({
     }
 });
 
-export const { setFilteredRooms, clearFilteredRooms, setCheckInDate, setCheckOutDate, setGuests, setSelectedRoomType } = hotelSlice.actions;
+export const { setFilteredRooms, setCheckInDate, setCheckOutDate, setGuests, setSelectedRoomType } = hotelSlice.actions;
 export default hotelSlice.reducer;
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import mockComments from '../mock/mockComments.js';
-import CommentCard from '../cards/CommentCard.jsx';
+import CommentCard from '../../cards/CommentCard.jsx';
+import mockComments from "../../mock/mockComments.js";
 
 export default function Comments() {
     const [activeComment, setActiveComment] = useState(mockComments[0]);

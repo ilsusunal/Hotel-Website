@@ -1,5 +1,5 @@
 import React from 'react';
-import HotelPolicy from '../components/HotelPolicy';
+import HotelPolicy from './HotelPolicy';
 
 export default function RoomDetails({ roomDetails }) {
   if (!roomDetails) return null;

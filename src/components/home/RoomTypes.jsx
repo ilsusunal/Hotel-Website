@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import RoomTypeCard from '../cards/RoomTypeCard'
+import RoomTypeCard from '../../cards/RoomTypeCard.jsx'
 import { useDispatch } from 'react-redux';
-import { setSelectedRoomType } from "../store/hotelSlice.js"
+import { setSelectedRoomType } from "../../store/hotelSlice.js"
 
 export default function RoomType() {
     const dispatch = useDispatch();

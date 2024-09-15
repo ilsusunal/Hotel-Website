@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Comments from '../components/Comments'
 import mockAbout from '../mock/mockAbout.js';
+import Comments from '../components/common/Comments.jsx';
 
 export default function AboutPage() {
   const [selectedSection, setSelectedSection] = useState("History");

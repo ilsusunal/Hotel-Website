@@ -1,10 +1,10 @@
 import React from 'react'
-import Slider from '../components/Slider'
-import AboutHotel from '../components/AboutHotel'
-import Comments from '../components/Comments'
-import RoomTypes from '../components/RoomTypes'
-import HotelLocation from '../components/HotelLocation'
-import RoomSearch from '../components/RoomSearch'
+import Slider from '../components/home/Slider'
+import AboutHotel from '../components/home/AboutHotel'
+import Comments from '../components/common/Comments'
+import RoomTypes from '../components/home/RoomTypes'
+import HotelLocation from '../components/common/HotelLocation'
+import RoomSearch from '../components/home/RoomSearch'
 
 export default function
     () {
