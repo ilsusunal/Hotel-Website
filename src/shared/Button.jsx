@@ -1,13 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default function Button({ onClick, label, to, variant = "filled" }){
-    const history = useHistory();
+export default function Button({ onClick, label, to, variant = "filled", type = "button" }) {
+  const history = useHistory();
 
   const handleClick = () => {
+    if (type === "submit") {
+      return;
+    }
     if (to) {
       history.push(to);
-    } 
+    }
     if (onClick) {
       onClick();
     }
@@ -16,11 +19,13 @@ export default function Button({ onClick, label, to, variant = "filled" }){
   const buttonClass = (() => {
     switch (variant) {
       case 'outlined':
-        return 'border border-lightpink text-lightpink bg-transparent hover:bg-lightpink hover:text-white transition-all duration-300';
+        return 'border border-sunsetCoral text-sunsetCoral bg-transparent hover:bg-sunsetCoral hover:text-white transition-all duration-300';
       case 'text':
-        return 'text-lightpink underline hover:text-darkPink transition-all duration-300';
-      default: 
-        return 'bg-lightpink text-white hover:bg-darkPink transition-all duration-300';
+        return 'text-black font-medium underline hover:text-sunsetCoral transition-all duration-300';
+      case 'accent':
+        return 'bg-sunsetCoral/50 text-white hover:bg-sandyBeige/50 transition-all duration-300';
+      default:
+        return 'bg-oceanBlue text-white hover:bg-sandyBeige/50 transition-all duration-300';
     }
   })();
   return (

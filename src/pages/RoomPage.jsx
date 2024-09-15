@@ -8,7 +8,8 @@ import PriceSlider from '../shared/PriceSlider';
 import ServiceFilter from '../shared/ServiceFilter';
 import CheckInPicker from '../shared/CheckInPicker';
 import CheckOutPicker from '../shared/CheckOutPicker';
-import { setFilteredRooms } from '../store/hotelSlice';
+import { setFilteredRooms, setGuests  } from '../store/hotelSlice';
+import Button from '../shared/button';
 
 export default function RoomPage() {
   const [adults, setAdults] = useState(1);
@@ -18,7 +19,8 @@ export default function RoomPage() {
   const history = useHistory();
   const dispatch = useDispatch();
   const rooms = useSelector(state => state.hotel.rooms);
-  const uniqueRoomTypes = Array.from(new Set(rooms.map(room => room.type)));
+  const checkInDate = useSelector(state => state.hotel.checkInDate);
+  const checkOutDate = useSelector(state => state.hotel.checkOutDate);
 
   const [searchParams, setSearchParams] = useState({
     checkInDate: null,
@@ -29,8 +31,15 @@ export default function RoomPage() {
     maxPrice: 300,
     kitchen: false,
     wifi: false,
-    bedType: '',
   });
+
+  useEffect(() => {
+    setSearchParams(prev => ({
+      ...prev,
+      checkInDate,
+      checkOutDate
+    }));
+  }, [checkInDate, checkOutDate]);
 
   const getUniqueRoomTypes = (rooms) => {
     const roomTypesMap = {};
@@ -39,13 +48,18 @@ export default function RoomPage() {
         roomTypesMap[room.type] = room;
       }
     });
-    return Object.values(roomTypesMap); 
+    return Object.values(roomTypesMap);
   };
 
   useEffect(() => {
+    console.log("Rooms:", rooms);
     const uniqueRooms = getUniqueRoomTypes(rooms);
     setFilteredRoomsUI(uniqueRooms);
   }, [rooms]);
+
+  useEffect(() => {
+    console.log("Updated Search Params:", searchParams);
+  }, [searchParams]);
 
   const handlePriceChange = (minPrice, maxPrice) => {
     setSearchParams(prev => ({
@@ -56,19 +70,53 @@ export default function RoomPage() {
   };
 
   const handleServiceChange = (name, checked) => {
+    console.log("Service Change:", name, checked);
     setSearchParams(prev => ({
       ...prev,
       [name]: checked,
     }));
   };
 
-  const handleSearch = () => {
+  const handleGuestChange = (newAdults, newChildren) => {
+    setAdults(newAdults);
+    setChildren(newChildren);
+    setSearchParams(prev => ({
+      ...prev,
+      adults: newAdults,
+      children: newChildren
+    }));
+    dispatch(setGuests({ adults: newAdults, children: newChildren }));
+  };
+
+  const handleCheckInChange = (date) => {
+    setSearchParams(prev => ({
+      ...prev,
+      checkInDate: date
+    }));
+  };
+
+  const handleCheckOutChange = (date) => {
+    setSearchParams(prev => ({
+      ...prev,
+      checkOutDate: date
+    }));
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    console.log("Search Params:", searchParams);  
+    console.log("Rooms:", rooms);
+
+    dispatch(setGuests({ adults, children }));
+
     const filtered = rooms.filter(room => {
       const withinPriceRange = room.price_per_night >= searchParams.minPrice && room.price_per_night <= searchParams.maxPrice;
       const hasKitchen = !searchParams.kitchen || room.kitchen;
       const hasWifi = !searchParams.wifi || room.wifi;
-      const matchesBedType = !searchParams.bedType || room.bedType === searchParams.bedType;
-      return withinPriceRange && hasKitchen && hasWifi && matchesBedType;
+      const meetsGuestRequirements = room.maxPersons.adults >= searchParams.adults &&
+                                   room.maxPersons.children >= searchParams.children;
+      return withinPriceRange && hasKitchen && hasWifi && meetsGuestRequirements;
     });
     const uniqueFilteredRooms = getUniqueRoomTypes(filtered);
     setFilteredRoomsUI(uniqueFilteredRooms);
@@ -86,27 +134,27 @@ export default function RoomPage() {
       <nav className='flex gap-2 items-center'>
         <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
         <i className="fa-solid fa-chevron-right" />
-        <Link to="/rooms" className="custom-hover text-sm">Rooms</Link>
+        <Link to="/rooms" className="custom-hover text-sm text-oceanBlue">Rooms</Link>
       </nav>
 
       {/* Title*/}
       <section>
-        <h1 className='text-lightpink font-playfair text-3xl font-semibold mb-8'>Rooms & Suits</h1>
+        <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8'>Rooms & Suits</h1>
       </section>
 
       {/* Search*/}
-      <section className='flex justify-between items-center'>
-        {/* Filters*/}
-        <section className='flex flex-wrap gap-4 items-center justify-between w-3/4' >
+      <section className='flex items-center'>
+        <form onSubmit={handleSearch} className='flex flex-wrap gap-4 items-center justify-between w-full' >
+          {/* Filters*/}
           <CheckInPicker />
           <CheckOutPicker />
           <GuestControl
             adults={adults}
             children={children}
-            onIncrementAdult={() => setAdults(adults + 1)}
-            onDecrementAdult={() => setAdults(adults - 1)}
-            onIncrementChild={() => setChildren(children + 1)}
-            onDecrementChild={() => setChildren(children - 1)}
+            onIncrementAdult={() => handleGuestChange(adults + 1, children)}
+            onDecrementAdult={() => handleGuestChange(adults - 1, children)}
+            onIncrementChild={() => handleGuestChange(adults, children + 1)}
+            onDecrementChild={() => handleGuestChange(adults, children - 1)}
           />
           <PriceSlider
             minPrice={searchParams.minPrice}
@@ -117,16 +165,13 @@ export default function RoomPage() {
             services={{ kitchen: searchParams.kitchen, wifi: searchParams.wifi }}
             onChange={handleServiceChange}
           />
-        </section>
-        {/* Buttons*/}
-        <div className='flex gap-4'>
-          <button onClick={handleSearch}>
-            Filter
-          </button>
-          <button onClick={() => setFilteredRoomsUI(null)}>
-            All
-          </button>
-        </div>
+          {/* Buttons*/}
+          <div className='flex'>
+            <Button type="submit" label="Filter" variant="text" />
+            <Button onClick={() => setFilteredRoomsUI(null)} label="All" variant="text" />
+          </div>
+        </form>
+
       </section>
 
       {/* Rooms*/}

@@ -11,6 +11,9 @@ export default {
         "lightBlue": "#79c3ee",
         "lightpink": "#eb528d",
         "darkPink": "#d36572",
+        "oceanBlue": "#1e3a8a",
+        "sunsetCoral": "#ff6f61",
+        "sandyBeige": "#f1c40f",
       },
       fontFamily: {
         playfair: ['Playfair Display', 'serif'],

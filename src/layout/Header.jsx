@@ -21,7 +21,7 @@ export default function Header() {
     }, [location]);
 
     return (
-        <header className='w-full bg-stone-50 font-semibold'>
+        <header className='w-full bg-stone-100 font-semibold'>
             <div className='flex justify-around items-center py-8 px-4'>
                 <section className='flex gap-4 items-center'>
                     <i className="fa-solid fa-hotel" />
@@ -43,7 +43,7 @@ export default function Header() {
                 </button>
             </div>
             {/* Mobile Nav */}
-            <nav className={`${hamburger ? 'flex' : 'hidden'} md:hidden flex-col items-center w-full bg-stone-50`}>
+            <nav className={`${hamburger ? 'flex' : 'hidden'} md:hidden flex-col items-center w-full bg-stone-100`}>
                 <Link to="/" className={`custom-hover py-2 ${isActive('/')}`}>Home</Link>
                 <Link to="/about" className={`custom-hover py-2 ${isActive('/about')}`}>About</Link>
                 <Link to="/rooms" className={`custom-hover py-2 ${isActive('/rooms')}`}>Rooms</Link>

@@ -15,28 +15,28 @@ export default function RoomTypeCard() {
   return (
     <div className='relative grid grid-cols-1 md:grid-cols-5 gap-4 my-8 items-center'>
       {/* Room Type Card */}
-      <section className='relative md:h-4/5 md:col-span-2 bg-stone-50 border-stone-100 border-2 rounded-2xl p-8 space-y-8 z-10 md:-mr-24'>
+      <section className='relative md:h-4/5 md:col-span-2 bg-white border-stone-200 border-2 rounded-2xl p-8 space-y-8 z-10 md:-mr-24'>
         <h2 className='text-2xl font-medium font-playfair'>{room.type}</h2>
         <p className='font-light'>{room.description}</p>
         {/* Services */}
-        <div className='flex justify-between'>
-        <p className='mt-2'>
+        <div className='flex justify-around text-stone-400 my-4'>
+          <div className='flex flex-col items-center'>
             <i className="fa-regular fa-square mr-4" />
-            {room.sq2} m²
-          </p>
-          <p className='mt-2'>
+            <p className='mt-2'>{room.sq2} m²</p>
+          </div>
+          <div className='flex flex-col items-center'>
             <i className="fa-solid fa-wifi mr-4" />
-            {room.wifi ? 'Available' : 'Not available'}
-          </p>
-          <p className='mt-2'>
+            <p className='mt-2'>{room.wifi ? 'Free Wifi' : 'Wifi'}</p>
+          </div>
+          <div className='flex flex-col items-center'>
             <i className="fa-solid fa-fire-burner mr-4" />
-            {room.kitchen ? 'Available' : 'Not available'}
-          </p>
+            <p className='mt-2'>{room.kitchen ? 'Kitchen' : 'Breakfast Service'}</p>
+          </div>
         </div>
         {/* Buttons*/}
         <div className='flex justify-between'>
-          <Button to="/rooms" label="Book Now" variant="filled"/>
-          <Button to="/rooms" label="see more" variant="text"/>
+          <Button to="/rooms" label="Book Now" variant="filled" />
+          <Button to="/rooms" label="see more" variant="text" />
         </div>
       </section>
       {/* Image(slider) */}
