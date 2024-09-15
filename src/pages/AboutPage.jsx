@@ -21,7 +21,7 @@ export default function AboutPage() {
       <nav className='flex gap-2 items-center'>
         <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
         <i className="fa-solid fa-chevron-right" />
-        <Link to="/about" className="custom-hover text-sm">About</Link>
+        <Link to="/about" className="custom-hover text-sm text-oceanBlue">About</Link>
       </nav>
 
       {/* Title */}
@@ -53,30 +53,42 @@ export default function AboutPage() {
       <section className="py-16">
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold text-center pb-16'>Services</h1>
         <div className='flex justify-around text-stone-400 py-8'>
-          <div className='flex flex-col items-center hover:text-oceanBlue'>
+          <div className='flex flex-col items-center hover:text-oceanBlue border-2 rounded-xl border-stone-100 p-4 hover:border-oceanBlue/50'>
             <i className="fa-solid fa-utensils fa-2x mb-2" />
-            <p className='mt-2 text-center'>Restaurant</p>
+            <p className='mt-2 text-center my-4 font-medium'>Restaurant</p>
+            <p className='mt-2 text-center font-light max-w-44' >
+              Enjoy a delightful dining experience at our on-site restaurant, offering a range of gourmet dishes and beverages.
+            </p>
           </div>
-          <div className='flex flex-col items-center hover:text-oceanBlue'>
+          <div className='flex flex-col items-center hover:text-oceanBlue border-2 rounded-xl border-stone-100 p-4 hover:border-oceanBlue/50'>
             <i className="fa-solid fa-swimmer fa-2x mb-2" />
-            <p className='mt-2 text-center'>Pool</p>
+            <p className='mt-2 text-center my-4 font-medium'>Pool</p>
+            <p className='mt-2 text-center font-light max-w-44' >
+              Relax and unwind in our luxurious swimming pool, perfect for a refreshing dip or lounging under the sun.
+            </p>
           </div>
-          <div className='flex flex-col items-center hover:text-oceanBlue'>
+          <div className='flex flex-col items-center hover:text-oceanBlue border-2 rounded-xl border-stone-100 p-4 hover:border-oceanBlue/50'>
             <i className="fa-solid fa-spa fa-2x mb-2" />
-            <p className='mt-2 text-center'>Spa</p>
+            <p className='mt-2 text-center my-4 font-medium'>Spa</p>
+            <p className='mt-2 text-center font-light max-w-44' >
+              Rejuvenate your senses with our world-class spa services, including massages, facials, and wellness treatments.
+            </p>
           </div>
-          <div className='flex flex-col items-center hover:text-oceanBlue'>
+          <div className='flex flex-col items-center hover:text-oceanBlue border-2 rounded-xl border-stone-100 p-4 hover:border-oceanBlue/50'>
             <i className="fa-solid fa-table-tennis-paddle-ball fa-2x mb-2" />
-            <p className='mt-2 text-center'>Fitness Center</p>
+            <p className='mt-2 text-center my-4 font-medium'>Fitness Center</p>
+            <p className='mt-2 text-center font-light max-w-44' >
+              Stay active during your stay with access to our fully equipped fitness center, featuring modern workout equipment.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Top Comments*/}
-      <section>
+      < section  >
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold text-center'>Testimonials</h1>
         <Comments />
-      </section>
-    </div>
+      </ section>
+    </div >
   )
 }

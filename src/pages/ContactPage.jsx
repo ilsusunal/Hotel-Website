@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import HotelLocation from '../components/HotelLocation'
+import ContactForm from '../components/contactForm'
 
 export default function ContactPage() {
   return (
@@ -8,17 +9,22 @@ export default function ContactPage() {
       <nav className='flex gap-2 items-center'>
         <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
         <i className="fa-solid fa-chevron-right" />
-        <Link to="/contact" className="custom-hover text-sm">Contact</Link>
+        <Link to="/contact" className="custom-hover text-sm text-oceanBlue">Contact</Link>
       </nav>
 
       {/* Title*/}
       <section>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8'>Get In Touch</h1>
       </section>
-      <p className='font-light w-2/3 text-center'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut nim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+      {/* Contact Form*/}
+      <section className='flex flex-col md:flex-row items-center gap-12 my-20 p-8'>
+        <p className='font-light w-2/3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut nim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <ContactForm />
+      </section>
 
       {/* Services*/}
-      <section>
+      <section className='py-16'>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8 text-center'>Location</h1>
         <HotelLocation />
       </section>

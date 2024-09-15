@@ -62,7 +62,7 @@ export default function RoomReservationPage({ history }) {
                 <i className="fa-solid fa-chevron-right" />
                 <Link to="/rooms" className="custom-hover text-gray-500 text-sm">Rooms</Link>
                 <i className="fa-solid fa-chevron-right" />
-                <Link to="/rooms/id" className="custom-hover text-sm">Reservation</Link>
+                <Link to="/rooms/id" className="custom-hover text-sm text-oceanBlue">Reservation</Link>
             </nav>
 
             {/* Title and Room Types */}
