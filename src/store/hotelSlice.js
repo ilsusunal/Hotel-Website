@@ -6,6 +6,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 const initialState = {
     rooms: [],
     filteredRooms: [],
+    selectedRoomType: "Classic Room",
     checkInDate: null,
     checkOutDate: null,
     adults: 1,
@@ -38,6 +39,9 @@ const hotelSlice = createSlice({
         setGuests: (state, action) => {
             state.adults = action.payload.adults;
             state.children = action.payload.children;
+        },
+        setSelectedRoomType: (state, action) => {
+            state.selectedRoomType = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -57,7 +61,7 @@ const hotelSlice = createSlice({
     }
 });
 
-export const { setRooms, setFilteredRooms, setCheckInDate, setCheckOutDate, setGuests } = hotelSlice.actions;
+export const { setRooms, setFilteredRooms, setCheckInDate, setCheckOutDate, setGuests, setSelectedRoomType } = hotelSlice.actions;
 export default hotelSlice.reducer;
 
 

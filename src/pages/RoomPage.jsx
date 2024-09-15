@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import RoomCard from '../cards/RoomCard';
@@ -31,7 +31,21 @@ export default function RoomPage() {
     wifi: false,
     bedType: '',
   });
-  
+
+  const getUniqueRoomTypes = (rooms) => {
+    const roomTypesMap = {};
+    rooms.forEach(room => {
+      if (!roomTypesMap[room.type]) {
+        roomTypesMap[room.type] = room;
+      }
+    });
+    return Object.values(roomTypesMap); 
+  };
+
+  useEffect(() => {
+    const uniqueRooms = getUniqueRoomTypes(rooms);
+    setFilteredRoomsUI(uniqueRooms);
+  }, [rooms]);
 
   const handlePriceChange = (minPrice, maxPrice) => {
     setSearchParams(prev => ({
@@ -56,7 +70,8 @@ export default function RoomPage() {
       const matchesBedType = !searchParams.bedType || room.bedType === searchParams.bedType;
       return withinPriceRange && hasKitchen && hasWifi && matchesBedType;
     });
-    setFilteredRoomsUI(filtered);
+    const uniqueFilteredRooms = getUniqueRoomTypes(filtered);
+    setFilteredRoomsUI(uniqueFilteredRooms);
   };
 
   const handleBookNow = (room) => {
@@ -64,9 +79,7 @@ export default function RoomPage() {
     history.push(`/rooms/reservation?roomType=${room.type}`);
   };
 
-  const roomsToDisplay = filteredRooms || rooms.filter((room, index, self) => 
-    self.findIndex(r => r.type === room.type) === index 
-  );
+  const roomsToDisplay = filteredRooms || getUniqueRoomTypes(rooms);
 
   return (
     <div className='w-2/3 m-12 space-y-8'>
@@ -119,7 +132,7 @@ export default function RoomPage() {
       {/* Rooms*/}
       <section className='flex flex-col flex-wrap gap-4' >
         {roomsToDisplay.map(room => (
-          <RoomCard key={room.id} roomDetails={room} onBookNow={() => handleBookNow(room)}/>
+          <RoomCard key={room.id} roomDetails={room} onBookNow={() => handleBookNow(room)} />
         ))}
       </section >
     </div >

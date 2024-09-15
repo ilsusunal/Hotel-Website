@@ -60,7 +60,6 @@ export default function RoomSearch() {
                     <i className="fa-solid fa-magnifying-glass" />
                 </button>
             </form>
-
         </div>
     )
 }
