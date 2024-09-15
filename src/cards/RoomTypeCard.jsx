@@ -35,7 +35,7 @@ export default function RoomTypeCard() {
         </div>
         {/* Buttons*/}
         <div className='flex justify-between'>
-          <Button to="/rooms/reservation" label="Book Now" variant="filled"/>
+          <Button to="/rooms" label="Book Now" variant="filled"/>
           <Button to="/rooms" label="see more" variant="text"/>
         </div>
       </section>

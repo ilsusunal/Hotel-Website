@@ -8,13 +8,13 @@ export default function Comments() {
     const handleProfilePicClick = (comment) => {
         setActiveComment(comment);
     };
+
     return (
-        <section className='flex flex-col gap-12 my-16 p-8'>
-            <h1 className='text-lightpink font-playfair text-4xl font-semibold text-center'>We heard them say..</h1>
+        <section className='flex flex-col gap-12 mt-12 p-8'>
             {activeComment && (
                 <CommentCard {...activeComment} />
             )}
-            <div className='flex justify-around'>
+            <div className='flex justify-around mt-8'>
                 {mockComments.map((comment, index) => (
                     <img
                         key={index}
@@ -25,8 +25,6 @@ export default function Comments() {
                     />
                 ))}
             </div>
-
-
         </section>
     )
 }

@@ -16,11 +16,16 @@ export default function
                     <RoomSearch />
                 </div>
             </section>
-            <section className='max-w-6xl'>
-                <AboutHotel/>
-                <Comments/>
-                <RoomTypes/>
-                <HotelLocation/>
+            <section className='max-w-6xl flex flex-col gap-18'>
+                <AboutHotel />
+                <div>
+                    <h1 className='text-lightpink font-playfair text-4xl font-semibold text-center'>We heard them say..</h1>
+                    <Comments />
+                </div>
+                <RoomTypes />
+                <div>
+                    <h1 className='text-lightpink font-playfair text-4xl font-semibold text-center'>Location</h1>
+                    <HotelLocation /></div>
             </section>
         </main>
     )

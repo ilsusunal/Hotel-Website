@@ -4,7 +4,6 @@ import Pool from "/Pool.jpg"
 export default function HotelLocation() {
   return (
     <div className='flex flex-col gap-12 my-16 p-8'>
-      <h1 className='text-lightpink font-playfair text-4xl font-semibold text-center'>Location</h1>
       <section className='md:flex gap-16 justify-between'>
         <img src={Pool} alt="Map" className='max-h-96'/>
         <div className='flex md:flex-col md:space-y-24 justify-around my-4'>
