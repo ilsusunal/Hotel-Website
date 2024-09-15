@@ -42,10 +42,8 @@ export default function RoomSearch() {
         <div className="bg-white rounded-xl md:rounded-full p-4 md:flex items-center space-x-4 w-1/2">
             <form onSubmit={handleSearch} className="md:flex items-center w-full justify-around">
                 {/* Check-in & Check-out */}
-                <div className='flex'>
-                    <CheckInPicker />
-                    <CheckOutPicker />
-                </div>
+                <CheckInPicker />
+                <CheckOutPicker />
                 {/* Guests */}
                 <GuestControl
                     adults={adults}

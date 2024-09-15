@@ -12,6 +12,10 @@
   @apply hover:text-lightpink hover:underline hover:underline-offset-4 hover:decoration-2;
 }
 
+.active {
+  @apply text-lightpink underline underline-offset-4 decoration-2;
+}
+
 .slider {
   -webkit-appearance: none;
   appearance: none;

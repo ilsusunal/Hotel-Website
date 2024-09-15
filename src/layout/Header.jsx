@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation  } from 'react-router-dom'
 
 export default function Header() {
     const [hamburger, setHamburger] = useState(false);
-    const [shopDropdown, setShopDropdown] = useState(false);
+    const location = useLocation();
 
     const handleHamburger = () => {
         if (!hamburger) {
@@ -12,9 +12,13 @@ export default function Header() {
             setHamburger(false);
         }
     }
-    const toggleShopDropdown = () => {
-        setShopDropdown(!shopDropdown);
+
+    const isActive = (path) => {
+        return location.pathname === path || location.pathname.startsWith(path + '/') ? 'active' : '';
     };
+
+    useEffect(() => {
+    }, [location]);
 
     return (
         <header className='w-full bg-stone-50 font-semibold'>
@@ -24,11 +28,11 @@ export default function Header() {
                     <h1 className='text-2xl'>Hotel İzmir</h1>
                 </section>
                 {/* Desktop Nav */}
-                <nav className='hidden md:flex gap-8 items-center'>
-                    <Link to="/" className="custom-hover">Home</Link>
-                    <Link to="/about" className="custom-hover">About</Link>
-                    <Link to="/rooms" className="custom-hover">Rooms</Link>
-                    <Link to="/contact" className="custom-hover">Contact</Link>
+                <nav className='hidden md:flex gap-8 items-center font-normal'>
+                    <Link to="/" className={`custom-hover ${isActive('/')}`}>Home</Link>
+                    <Link to="/about" className={`custom-hover ${isActive('/about')}`}>About</Link>
+                    <Link to="/rooms" className={`custom-hover ${isActive('/rooms')}`}>Rooms</Link>
+                    <Link to="/contact" className={`custom-hover ${isActive('/contact')}`}>Contact</Link>
                 </nav>
                 {/* Hamburger */}
                 <button
@@ -40,10 +44,10 @@ export default function Header() {
             </div>
             {/* Mobile Nav */}
             <nav className={`${hamburger ? 'flex' : 'hidden'} md:hidden flex-col items-center w-full bg-stone-50`}>
-                <Link to="/" className="custom-hover py-2">Home</Link>
-                <Link to="/about" className="custom-hover py-2">About</Link>
-                <Link to="/rooms" className="custom-hover py-2">Rooms</Link>
-                <Link to="/contact" className="custom-hover py-2">Contact</Link>
+                <Link to="/" className={`custom-hover py-2 ${isActive('/')}`}>Home</Link>
+                <Link to="/about" className={`custom-hover py-2 ${isActive('/about')}`}>About</Link>
+                <Link to="/rooms" className={`custom-hover py-2 ${isActive('/rooms')}`}>Rooms</Link>
+                <Link to="/contact" className={`custom-hover py-2 ${isActive('/contact')}`}>Contact</Link>
             </nav>
         </header>
     )

@@ -10,11 +10,11 @@ export default function PageContent() {
   return (
     <>
       <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/about" exact component={AboutPage} />
-        <Route path="/rooms" exact component={RoomPage} />
-        <Route path="/rooms/reservation" exact component={RoomReservationPage} />
-        <Route path="/contact" exact component={ContactPage} />
+        <Route exact path="/"  component={HomePage} />
+        <Route exact path="/about"  component={AboutPage} />
+        <Route exact path="/rooms"  component={RoomPage} />
+        <Route exact path="/rooms/reservation"  component={RoomReservationPage} />
+        <Route exact path="/contact"  component={ContactPage} />
       </Switch>
 
     </>

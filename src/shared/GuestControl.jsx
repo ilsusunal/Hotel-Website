@@ -27,15 +27,15 @@ const GuestControl = ({ adults, children, onIncrementAdult, onDecrementAdult, on
                 <p >{totalPeople}</p>
             </div>
             {dropdownOpen && (
-                <div className="absolute bg-white rounded-lg border-2 mt-2 p-4 w-40 top-12 z-10">
+                <div className="absolute bg-white rounded-md border-2 mt-2 p-4 w-52 top-16 z-10">
                     <div className="flex items-center justify-between mb-2">
                         <label className="text-sm font-semibold">Adults</label>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex justify-end items-center space-x-2">
                             <button
                                 type="button"
                                 onClick={onDecrementAdult}
                                 disabled={adults === 1}
-                                className="w-6 h-6 bg-gray-300 rounded-full text-center"
+                                className="w-6 h-6 bg-gray-300 rounded-full text-center text-xs"
                             >
                                 -
                             </button>

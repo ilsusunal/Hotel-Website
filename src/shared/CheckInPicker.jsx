@@ -7,6 +7,7 @@ import { setCheckInDate } from '../store/hotelSlice';
 const CheckInPicker = () => {
   const dispatch = useDispatch();
   const checkInDate = useSelector(state => state.hotel.checkInDate);
+  const checkOutDate = useSelector(state => state.hotel.checkOutDate);
 
   const handleDateChange = (date) => {
     console.log("Dispatching date:", date ? date.toISOString() : null);
@@ -21,6 +22,8 @@ const CheckInPicker = () => {
         selected={checkInDate}
         onChange={handleDateChange}
         placeholderText="Add Date"
+        minDate={new Date()}
+        maxDate={checkOutDate ? new Date(checkOutDate).setDate(new Date(checkOutDate).getDate() - 1) : undefined}
         className="text-center text-sm bg-transparent focus:outline-none cursor-pointer"
       />
     </div>
