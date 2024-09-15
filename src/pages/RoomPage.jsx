@@ -60,23 +60,44 @@ export default function RoomPage() {
 
   return (
     <div className='w-3/5 m-12 space-y-4'>
-      <nav className='flex gap-4 items-center'>
-        <Link to="/" className="custom-hover text-gray-500">Home</Link>
+      <nav className='flex gap-2 items-center'>
+        <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
         <i className="fa-solid fa-chevron-right" />
-        <Link to="/rooms" className="custom-hover">Rooms</Link>
+        <Link to="/rooms" className="custom-hover text-sm">Rooms</Link>
       </nav>
 
-      {/* Title and Search/filter parameters */}
-      <section className='space-y-8'>
-        <div className='flex justify-between'>
-          <h1 className='text-lightpink font-playfair text-3xl font-semibold'>Rooms & Suits</h1>
-          <button onClick={handleSearch} className='bg-lightpink text-white px-3 py-1 rounded-2xl'>
-            Find Your Room
-          </button>
-        </div>
+      {/* Title*/}
+      <section className='flex justify-between'>
+        <h1 className='text-lightpink font-playfair text-3xl font-semibold'>Rooms & Suits</h1>
+        <button onClick={handleSearch} className='bg-lightpink text-white px-3 py-1 rounded-2xl'>
+          Find Your Room
+        </button>
+      </section>
 
+      {/* Categories*/}
+      <section>
+        <nav className='flex gap-8 list-none'>
+          <li className="custom-hover">All</li>
+          <li className="custom-hover">Classic Rooms</li>
+          <li className="custom-hover">Family Rooms</li>
+          <li className="custom-hover">Business Suites</li>
+          <li className="custom-hover">Executive Suites</li>
+        </nav>
+      </section>
+
+      <div className='flex'>
+        {/* Room Cards */}
+        <section className='flex flex-col flex-wrap gap-4 w-2/3' >
+          {
+            rooms.length > 0 ? rooms.map(room => (
+              <RoomCard key={room.id} room={room} />
+            )) : (
+              <p>No rooms available</p>
+            )
+          }
+        </section >
         {/* Search Filters */}
-        <div className='flex items-center justify-between bg-stone-100 rounded-xl md:rounded-full p-4 space-x-4'>
+        <section className='flex flex-col items-center justify-between border-2 rounded-xl p-2  w-1/3' >
           {['Check In', 'Check Out'].map((label, index) => (
             <div key={index} className="flex flex-col items-center">
               <i className="fa-solid fa-calendar-days" />
@@ -106,19 +127,14 @@ export default function RoomPage() {
             services={{ kitchen: searchParams.kitchen, wifi: searchParams.wifi }}
             onChange={handleServiceChange}
           />
-        </div>
-      </section >
+          <button onClick={handleSearch} className='bg-lightpink text-white p-4 rounded-full'>
+            <i className="fa-solid fa-magnifying-glass" />
+          </button>
+        </section>
 
-      {/* Room Cards */}
-      <section className='flex flex-wrap gap-4' >
-        {
-          rooms.length > 0 ? rooms.map(room => (
-            <RoomCard key={room.id} room={room} />
-          )) : (
-            <p>No rooms available</p>
-          )
-        }
-      </section >
+
+
+      </div>
     </div >
   );
 }

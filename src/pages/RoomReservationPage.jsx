@@ -24,12 +24,12 @@ export default function RoomReservationPage({history}) {
 
     return (
         <div className='w-3/5 m-12 space-y-4'>
-            <nav className='flex gap-4 items-center'>
-                <Link to="/" className="custom-hover text-gray-500">Home</Link>
+            <nav className='flex gap-2 items-center'>
+                <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
                 <i className="fa-solid fa-chevron-right" />
-                <Link to="/rooms" className="custom-hover text-gray-500">Rooms</Link>
+                <Link to="/rooms" className="custom-hover text-gray-500 text-sm">Rooms</Link>
                 <i className="fa-solid fa-chevron-right" />
-                <Link to="/rooms/id" className="custom-hover">Reservation</Link>
+                <Link to="/rooms/id" className="custom-hover text-sm">Reservation</Link>
             </nav>
 
             {/* Title and Room Types */}

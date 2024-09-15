@@ -21,10 +21,10 @@ const GuestControl = ({ adults, children, onIncrementAdult, onDecrementAdult, on
 
     return (
         <div className="flex flex-col items-center relative" ref={dropdownRef}>
-            <i className="fa-solid fa-user-group" />
-            <label className="text-sm font-semibold">Guests</label>
-            <div className="text-center cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                {totalPeople}
+            <div className="flex flex-col text-center cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
+                <i className="fa-solid fa-user-group" />
+                <label className="text-sm font-semibold">Guests</label>
+                <p >{totalPeople}</p>
             </div>
             {dropdownOpen && (
                 <div className="absolute bg-white rounded-lg border-2 mt-2 p-4 w-40 top-12 z-10">
