@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import HotelPolicy from '../components/HotelPolicy';
 import CheckInPicker from '../shared/CheckInPicker';
 import CheckOutPicker from '../shared/CheckOutPicker';
 import GuestControl from '../shared/GuestControl';
+import RoomCard from '../cards/RoomCard';
+import RoomDetails from '../components/RoomDetails';
 
 
 export default function RoomReservationPage({ history }) {
-    const { filteredRooms, checkInDate, checkOutDate, guests } = useSelector(state => state.hotel);
+    const filteredRooms = useSelector(state => state.hotel.filteredRooms);
+    const checkInDate = useSelector(state => state.hotel.checkInDate);
+    const checkOutDate = useSelector(state => state.hotel.checkOutDate);
+    const adults = useSelector(state => state.hotel.adults);
+    const children = useSelector(state => state.hotel.children);
+
+    //To show filtered results
+    const roomTypes = [...new Set(filteredRooms.map(room => room.type))];
+    const [selectedType, setSelectedType] = useState(roomTypes[0] || '');
+    const roomsByType = filteredRooms.filter(room => room.type === selectedType);
+    const roomDetails = roomsByType.length > 0 ? roomsByType[0] : null;
 
     useEffect(() => {
         if (!filteredRooms || filteredRooms.length === 0) {
@@ -16,11 +27,16 @@ export default function RoomReservationPage({ history }) {
         }
     }, [filteredRooms, history]);
 
-    //To show filtered results
-    const roomTypes = Array.from(new Set(filteredRooms.map(room => room.type)));
-    const [selectedType, setSelectedType] = useState(roomTypes[0] || '');
-    const roomsByType = filteredRooms.filter(room => room.type === selectedType);
-    const roomDetails = roomsByType.length > 0 ? roomsByType[0] : null;
+    useEffect(() => {
+        if (filteredRooms.length > 0) {
+            setSelectedType(filteredRooms[0].type);
+        }
+    }, [filteredRooms]);
+
+    if (!filteredRooms || filteredRooms.length === 0) {
+        return "Loading...";
+    }
+
 
     //Calculations for reservation box
     const calculateNights = () => {
@@ -37,10 +53,6 @@ export default function RoomReservationPage({ history }) {
     const taxes = totalRoomCost * 0.2;
     const finalTotal = totalRoomCost + breakfastCost + taxes;
 
-    if (!filteredRooms || filteredRooms.length === 0) {
-        return "Loading...";
-    }
-
     return (
         <div className='w-2/3 m-12 space-y-8'>
             <nav className='flex gap-2 items-center'>
@@ -53,11 +65,14 @@ export default function RoomReservationPage({ history }) {
 
             {/* Title and Room Types */}
             <section className='space-y-4'>
-                <div className='flex justify-between'>
-                    <h1 className='text-lightpink font-playfair text-3xl font-semibold'>Book Your Room</h1>
-                    <p>${roomDetails.price_per_night} per night</p>
+                <div className='flex justify-between mb-8'>
+                    <h1 className='text-lightpink font-playfair text-3xl font-semibold'>Available Rooms</h1>
+                    <div className='flex gap-4 items-end'>
+                        <p className='font-playfair text-3xl font-semibold'>${roomDetails.price_per_night}</p>
+                        <p>per night</p>
+                    </div>
                 </div>
-                <div className='flex justify-between'>
+                <div className='flex justify-between mb-8'>
                     <nav className='flex gap-8 list-none cursor-pointer'>
                         {roomTypes.length > 0 ? (
                             roomTypes.map((type, index) => (
@@ -102,32 +117,25 @@ export default function RoomReservationPage({ history }) {
             </section>
             {/* Room Description & Reservation Box */}
             <section className='flex flex-col md:flex-row gap-6'>
-                {/* Room Descriptionx */}
-                <div className='flex-1 space-y-8'>
-                    <h2 className='font-playfair text-2xl font-semibold'>{roomDetails.type}</h2>
-                    <div className='flex justify-between gap-2 border-b-2 px-6 pb-8'>
-                        <p className='mt-2 gap-4'><i className="fa-solid fa-bed mr-4" />{roomDetails.bedType}</p>
-                        <p className='mt-2'><i className="fa-solid fa-user-group mr-4" /> {roomDetails.maxPersons.adults} adults, {roomDetails.maxPersons.children} children</p>
-                    </div>
-                    <h3 className='text-lightpink font-playfair text-xl font-semibold'>What Do We Offer</h3>
-                    <div className='gap-2 border-b-2 px-6 pb-8'>
-                        <p className='mt-2'><i className="fa-regular fa-square mr-4" />{roomDetails.sq2} m²</p>
-                        <p className='mt-2'><i className="fa-solid fa-wifi mr-4" /> {roomDetails.wifi ? 'Available' : 'Not available'}</p>
-                        <p className='mt-2'><i className="fa-solid fa-fire-burner mr-4" /> {roomDetails.kitchen ? 'Available' : 'Not available'}</p>
-                    </div>
-                    <HotelPolicy />
-                </div>
+                <RoomDetails roomDetails={roomDetails} />
                 {/* Reservation Box */}
                 <div className='w-2/5 border-2 rounded-2xl p-8 h-full items-center'>
                     <p className='font-semibold text-xl font-playfair'>${roomDetails.price_per_night} per night</p>
-                    <div className='border-2 rounded-2xl p-8 h-auto m-8'>
+                    <div className='border-y-2 p-8 h-auto m-4'>
                         <div className='flex border-b mb-4'>
                             <CheckInPicker />
                             <CheckOutPicker />
                         </div>
-                        <GuestControl />
+                        <GuestControl
+                            adults={adults}
+                            children={children}
+                            onIncrementAdult={() => setAdults(adults + 1)}
+                            onDecrementAdult={() => setAdults(adults - 1)}
+                            onIncrementChild={() => setChildren(children + 1)}
+                            onDecrementChild={() => setChildren(children - 1)} 
+                        />
                     </div>
-                    <div className='flex flex-col gap-4'>
+                    <div className='flex flex-col gap-4 text-sm'>
                         <button>Book Now</button>
                         <div className='flex justify-between'>
                             <p>${roomPrice} x {nights} nights</p>

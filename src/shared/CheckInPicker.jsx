@@ -9,7 +9,8 @@ const CheckInPicker = () => {
   const checkInDate = useSelector(state => state.hotel.checkInDate);
 
   const handleDateChange = (date) => {
-    dispatch(setCheckInDate(date));
+    console.log("Dispatching date:", date ? date.toISOString() : null);
+    dispatch(setCheckInDate(date ? date.toISOString() : null));
   };
 
   return (
@@ -20,7 +21,7 @@ const CheckInPicker = () => {
         selected={checkInDate}
         onChange={handleDateChange}
         placeholderText="Add Date"
-        className="text-center bg-transparent focus:outline-none cursor-pointer"
+        className="text-center text-sm bg-transparent focus:outline-none cursor-pointer"
       />
     </div>
   );

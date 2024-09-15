@@ -2,5 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import hotelReducer from "./hotelSlice";
 
 export const store = configureStore({
-    reducer: { hotel: hotelReducer}
+    reducer: { hotel: hotelReducer},
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

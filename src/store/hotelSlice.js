@@ -8,10 +8,8 @@ const initialState = {
     filteredRooms: [],
     checkInDate: null,
     checkOutDate: null,
-    guests: {
-        adults: 2,
-        children: 0,
-    },
+    adults: 1,
+    children: 0,
     status: "idle",
     error: null
 }
@@ -38,7 +36,8 @@ const hotelSlice = createSlice({
             state.checkOutDate = action.payload;
         },
         setGuests: (state, action) => {
-            state.guests = action.payload;
+            state.adults = action.payload.adults;
+            state.children = action.payload.children;
         }
     },
     extraReducers: (builder) => {

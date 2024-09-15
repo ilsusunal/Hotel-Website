@@ -12,12 +12,12 @@ import CheckOutPicker from '../shared/CheckOutPicker';
 export default function RoomPage() {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
+  const [selectedRoom, setSelectedRoom] = useState(null);
 
   const dispatch = useDispatch();
   const rooms = useSelector(state => state.hotel.rooms);
-  const checkInDate = useSelector(state => state.hotel.checkInDate);
-  const checkOutDate = useSelector(state => state.hotel.checkOutDate);
-  
+  const filteredRooms = useSelector(state => state.hotel.filteredRooms);
+
   const [searchParams, setSearchParams] = useState({
     checkInDate: null,
     checkOutDate: null,
@@ -60,8 +60,12 @@ export default function RoomPage() {
     history.push(`/rooms/reservation?${queryString}`);
   };
 
+  const handleRoomSelect = (room) => {
+    setSelectedRoom(room);
+  };
+
   return (
-    <div className='w-3/5 m-12 space-y-4'>
+    <div className='w-2/3  m-12 space-y-4'>
       <nav className='flex gap-2 items-center'>
         <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
         <i className="fa-solid fa-chevron-right" />
@@ -73,36 +77,13 @@ export default function RoomPage() {
         <h1 className='text-lightpink font-playfair text-3xl font-semibold'>Rooms & Suits</h1>
       </section>
 
-      {/* Categories*/}
+      {/* Search*/}
       <section className='flex justify-between items-center'>
-        <nav className='flex gap-8 list-none'>
-          <li className="custom-hover">All</li>
-          <li className="custom-hover">Classic Rooms</li>
-          <li className="custom-hover">Family Rooms</li>
-          <li className="custom-hover">Business Suites</li>
-          <li className="custom-hover">Executive Suites</li>
-        </nav>
-        <button onClick={handleSearch} className='bg-lightpink text-white px-3 py-1 rounded-2xl'>
-          Find Your Room
-        </button>
-      </section>
-
-      <div className='flex'>
-        {/* Room Cards */}
-        <section className='flex flex-col flex-wrap gap-4 w-2/3' >
-          {
-            rooms.length > 0 ? rooms.map(room => (
-              <RoomCard key={room.id} room={room} />
-            )) : (
-              <p>No rooms available</p>
-            )
-          }
-        </section >
-        {/* Search Filters */}
-        <section className='flex flex-col items-center justify-between border-2 rounded-xl p-2  w-1/4' >
+        {/* Filters*/}
+        <section className='flex items-center justify-between border-2 rounded-xl p-2  w-1/4' >
           <div className="flex">
-            <CheckInPicker/>
-            <CheckOutPicker/>
+            <CheckInPicker />
+            <CheckOutPicker />
           </div>
           <GuestControl
             adults={adults}
@@ -121,14 +102,24 @@ export default function RoomPage() {
             services={{ kitchen: searchParams.kitchen, wifi: searchParams.wifi }}
             onChange={handleServiceChange}
           />
-          <button onClick={handleSearch} className='bg-lightpink text-white p-4 rounded-full'>
-            <i className="fa-solid fa-magnifying-glass" />
-          </button>
         </section>
+        {/* Buttons*/}
+        <div className='flex gap-4'>
+          <button onClick={handleSearch}>
+            Filter
+          </button>
+          <button onClick={handleSearch}>
+            All
+          </button>
+        </div>
+      </section>
 
-
-
-      </div>
+      {/* Rooms*/}
+      <section className='flex flex-col flex-wrap gap-4' >
+        {filteredRooms.map(room => (
+          <RoomCard key={room.id} roomDetails={room} />
+        ))}
+      </section >
     </div >
   );
 }
