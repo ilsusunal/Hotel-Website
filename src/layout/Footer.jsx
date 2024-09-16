@@ -1,21 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import HotelLogo from "/hotel-izmir-logo.png";
 
 export default function Footer() {
     return (
         <footer className='w-full p-4 md:px-12 md:py-8 bg-sunsetCoral/20'>
             <section className='flex flex-wrap gap-4 justify-around md:px-8 md:py-4'>
-                {/* Hotel Name and Logo */}
                 <div className='flex flex-col gap-4 items-center text-oceanBlue font-playfair'>
-                    <i className="fa-solid fa-hotel" />
+                    <img src={HotelLogo} alt="Hotel İzmir" className='w-12 h-auto' />
                     <h1 className='text-2xl font-medium '>Hotel İzmir</h1>
                 </div>
-                {/* About */}
                 <div className='hidden md:block max-w-80'>
                     <h1 className='font-medium text-lg mb-4 font-playfair'>About</h1>
                     <p className='font-light text-sm'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
-                {/* Menü */}
                 <div>
                     <h1 className='font-medium text-lg mb-4 font-playfair'>Menu</h1>
                     <Link to="/" className="custom-hover block font-light my-2 text-sm">Home</Link>
@@ -23,7 +21,6 @@ export default function Footer() {
                     <Link to="/rooms" className="custom-hover block font-light my-2 text-sm">Rooms</Link>
                     <Link to="/contact" className="custom-hover block font-light my-2 text-sm">Contact</Link>
                 </div>
-                {/* Contact and Socials */}
                 <div>
                     <h1 className='font-medium text-lg mb-4 font-playfair'>Contact </h1>
                     <ul className="font-light">
