@@ -9,6 +9,44 @@
 }
 
 .custom-hover {
-  @apply hover:text-lightpink hover:underline hover:underline-offset-4 hover:decoration-2;
+  @apply hover:text-oceanBlue hover:underline hover:underline-offset-4 hover:decoration-2;
+}
+
+.active {
+  @apply text-oceanBlue underline underline-offset-4 decoration-2;
+}
+
+.custom-checkbox {
+  @apply appearance-none w-4 h-4 border-2 border-oceanBlue rounded focus:ring-0 hover:bg-oceanBlue hover:text-white checked:bg-oceanBlue checked:after:content-['✓'] checked:after:text-white checked:after:flex checked:after:items-center checked:after:justify-center checked:after:text-xs;
+}
+
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 8px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  cursor: pointer;
 }
 

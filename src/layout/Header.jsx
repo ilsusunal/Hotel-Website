@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation  } from 'react-router-dom'
 
 export default function Header() {
     const [hamburger, setHamburger] = useState(false);
-    const [shopDropdown, setShopDropdown] = useState(false);
+    const location = useLocation();
 
+    // Handling hamburger menu in mobile view
     const handleHamburger = () => {
         if (!hamburger) {
             setHamburger(true);
@@ -12,23 +13,28 @@ export default function Header() {
             setHamburger(false);
         }
     }
-    const toggleShopDropdown = () => {
-        setShopDropdown(!shopDropdown);
+
+    // Highlight the active link in navbar
+    const isActive = (path) => {
+        return location.pathname === path || location.pathname.startsWith(path + '/') ? 'active' : '';
     };
 
+    useEffect(() => {
+    }, [location]);
+
     return (
-        <header className='w-full bg-stone-50 font-semibold'>
+        <header className='w-full bg-stone-100 font-semibold'>
             <div className='flex justify-around items-center py-8 px-4'>
-                <section className='flex gap-4 items-center'>
+                <section className='flex gap-4 items-center text-oceanBlue'>
                     <i className="fa-solid fa-hotel" />
-                    <h1 className='text-2xl'>SomeHotel</h1>
+                    <h1 className='text-2xl font-playfair '>Hotel İzmir</h1>
                 </section>
                 {/* Desktop Nav */}
-                <nav className='hidden md:flex gap-8 items-center'>
-                    <Link to="/" className="custom-hover">Home</Link>
-                    <Link to="/about" className="custom-hover">About</Link>
-                    <Link to="/rooms" className="custom-hover">Rooms</Link>
-                    <Link to="/contact" className="custom-hover">Contact</Link>
+                <nav className='hidden md:flex gap-8 items-center font-normal'>
+                    <Link to="/" className={`custom-hover ${isActive('/')}`}>Home</Link>
+                    <Link to="/about" className={`custom-hover ${isActive('/about')}`}>About</Link>
+                    <Link to="/rooms" className={`custom-hover ${isActive('/rooms')}`}>Rooms</Link>
+                    <Link to="/contact" className={`custom-hover ${isActive('/contact')}`}>Contact</Link>
                 </nav>
                 {/* Hamburger */}
                 <button
@@ -39,11 +45,11 @@ export default function Header() {
                 </button>
             </div>
             {/* Mobile Nav */}
-            <nav className={`${hamburger ? 'flex' : 'hidden'} md:hidden flex-col items-center w-full bg-stone-50`}>
-                <Link to="/" className="custom-hover py-2">Home</Link>
-                <Link to="/about" className="custom-hover py-2">About</Link>
-                <Link to="/rooms" className="custom-hover py-2">Rooms</Link>
-                <Link to="/contact" className="custom-hover py-2">Contact</Link>
+            <nav className={`${hamburger ? 'flex' : 'hidden'} md:hidden flex-col items-center w-full bg-stone-100`}>
+                <Link to="/" className={`custom-hover py-2 ${isActive('/')}`}>Home</Link>
+                <Link to="/about" className={`custom-hover py-2 ${isActive('/about')}`}>About</Link>
+                <Link to="/rooms" className={`custom-hover py-2 ${isActive('/rooms')}`}>Rooms</Link>
+                <Link to="/contact" className={`custom-hover py-2 ${isActive('/contact')}`}>Contact</Link>
             </nav>
         </header>
     )
