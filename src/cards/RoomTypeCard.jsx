@@ -1,7 +1,6 @@
 import React from 'react'
-import Pool from "/Pool.jpg"
 import { useSelector } from 'react-redux';
-import Button from '../shared/button';
+import Button from '../shared/CustomButton';
 
 export default function RoomTypeCard() {
   const selectedRoomType = useSelector((state) => state.hotel.selectedRoomType);

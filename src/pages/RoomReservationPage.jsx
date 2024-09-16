@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import RoomDetails from '../components/reservation/RoomDetails';
-import Button from '../shared/button';
+import Button from '../shared/CustomButton';
 import ReservationBox from '../components/reservation/ReservationBox';
 import Breadcrumbs from '../shared/Breadcrumbs';
 import AvailableRoomsHeader from '../components/reservation/AvailableRoomsHeader';

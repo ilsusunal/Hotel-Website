@@ -2,7 +2,7 @@ import React from 'react';
 import CheckInPicker from '../../shared/CheckInPicker';
 import CheckOutPicker from '../../shared/CheckOutPicker';
 import GuestControl from '../../shared/GuestControl';
-import Button from '../../shared/button';
+import Button from '../../shared/CustomButton';
 
 const BREAKFAST_COST = 200;
 const TAX_RATE = 0.2;

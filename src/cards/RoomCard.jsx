@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../shared/button'
+import CustomButton from '../shared/CustomButton'
 
 export default function RoomCard({ roomDetails, onBookNow }) {
   return (
@@ -43,7 +43,7 @@ export default function RoomCard({ roomDetails, onBookNow }) {
             <p className='font-playfair text-xl font-semibold'>${roomDetails.price_per_night}</p>
             <p className='text-sm'>per night</p>
           </div>
-          <Button onClick={onBookNow} label="Book Now" variant="filled" />
+          <CustomButton onClick={onBookNow} label="Book Now" variant="filled" />
         </div>
       </section>
     </div>

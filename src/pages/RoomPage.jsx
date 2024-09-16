@@ -9,8 +9,8 @@ import ServiceFilter from '../shared/ServiceFilter';
 import CheckInPicker from '../shared/CheckInPicker';
 import CheckOutPicker from '../shared/CheckOutPicker';
 import { setFilteredRooms, setGuests, setCheckInDate, setCheckOutDate } from '../store/hotelSlice';
-import Button from '../shared/button';
 import Breadcrumbs from '../shared/Breadcrumbs';
+import CustomButton from '../shared/CustomButton';
 
 const MIN_PRICE = 0;
 const MAX_PRICE = 300;
@@ -121,8 +121,8 @@ export default function RoomPage() {
             onChange={handleServiceChange}
           />
           <div className='flex text-lg items-center'>
-            <Button type="submit" label="Filter" variant="text" />
-            <Button onClick={handleAllButtonClick} label="All" variant="text" />
+            <CustomButton type="submit" label="Filter" variant="text" />
+            <CustomButton onClick={handleAllButtonClick} label="All" variant="text" />
           </div>
         </form>
       </section>

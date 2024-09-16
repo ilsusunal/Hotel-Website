@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../shared/button';
+import Button from '../../shared/CustomButton';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
