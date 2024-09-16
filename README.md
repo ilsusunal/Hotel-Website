@@ -5,6 +5,8 @@
 - Demoyu incelemek isterseniz: [Demo Linki](https://hotel-website-murex.vercel.app)
 - Proje gelişimini takip etmek isterseniz: [Proje Linki](https://github.com/users/ilsusunal/projects/3)
 
+[Tech Stack](#tech-stack) | [Dosya Yapısı](#dosya-yapısı) | [Özellikler](#özellikler) | [Proje Gereksinimleri](#proje-gereksinimleri-assignment)
+
 ## Tech Stack
 
 - **React.js**: Arayüzü oluşturmak için.
@@ -51,3 +53,4 @@ Bu projede, assignment'ta belirtilen gereksinimlere uygun olarak aşağıdaki bi
 - [x] **Git** ve branch yapısını kullandım.
 - [x] Projeye "Hakkımızda" ve "İletişim" sayfalarını ekledim.
 
+NOT : [Design inspiration](https://www.behance.net/gallery/195752531/Hotel-California?tracking_source=search_projects|Hotel+Website+Design&l=20)
