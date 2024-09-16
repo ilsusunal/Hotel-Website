@@ -1,21 +1,52 @@
 # Hotel İzmir
 
-"Hotel İzmir" projesi, kullanıcıları otel odalarını keşfetmeye ve rezervasyon yapmaya yönlendiren modern bir otel web sitesidir. Bu proje, React.js kullanılarak geliştirilmiş olup, kullanıcı dostu bir arayüz ve çekici bir tasarım sunar. Web sitesi, otel odalarını görüntülemenizi, arama ve filtreleme yapmanızı ve detaylı bilgi almanızı sağlar.
+"Hotel İzmir" projesini, kullanıcıların otel odalarını keşfetmelerini ve rezervasyon yapmalarını sağlamak amacıyla geliştirdim. Bu projeyi React.js ile kodladım ve modern, kullanıcı dostu bir arayüz oluşturmayı hedefledim. Kullanıcılar, otel odalarını inceleyip filtreleme yaparak, detaylı bilgilere kolayca ulaşabiliyorlar.
 
-Demoyu inceleyebilirsiniz: [Demo Linki](https://hotel-website-murex.vercel.app)
+Demoyu incelemek isterseniz: [Demo Linki](https://hotel-website-murex.vercel.app)
+Proje gelişimini takip etmek isterseniz: [Proje Linki](https://github.com/users/ilsusunal/projects/3)
 
 ## Tech Stack
 
-- **React.js**: Kullanıcı arayüzünü oluşturmak için.
-- **Redux Toolkit**: State yönetimi için.
-- **TailWindCSS**: Styling.
-- **Vercel**: Deploy.
+- **React.js**: Arayüzü oluşturmak için.
+- **Redux Toolkit**: State yönetimini kolaylaştırmak için.
+- **TailwindCSS**: Projeye stil vermek için.
+- **Vercel**: Projeyi deploy etmek için.
+
+## Dosya Yapısı
+
+1. **Layout**: Projede sayfa yapısını Header, PageContent ve Footer olarak düzenledim. PageContent kısmında React Router v5 ile farklı sayfalar render ediliyor.
+2. **Pages**: Her sayfa eventleri ve state değişikliklerini yönetiyor. Modülerliği artırmak için sayfaları küçük bileşenlere böldüm. Sayfalar şu şekilde: 
+| **Sayfa**             | **URL**                    | **İçerik**                                                         |
+|-----------------------|----------------------------|---------------------------------------------------------------------|
+| Home                  | `/`                        | **Slider**, **arama formu**, **otel türlerini**, otel hakkında genel bilgi, comments, location|
+| About                 | `/about`                   | Otelin tarihçesi ve misyonunu içeren **Hakkımızda** bölümü.            |
+| Room                  | `/rooms`                   | Oteldeki tüm odaların listelendiği ve **filtreleme** yapılabildiği sayfa. Bu sayfadan Rezervasyona yönleiyoruz|
+| Room Reservation       | `/rooms/reservation`       | Rezervasyon için oda seçimi yapılan sayfa. Tüm **odaların detaylı özellikleri** burada|
+| Contact               | `/contact`                 | **İletişim bilgileri** ve iletişim formu.  |
+| Payment               | `/payment`                 | Under construction                             |
+
+3. **Components**: Bileşenleri sayfalara göre organize ettim ve her bir bileşeni tek bir sorumluluk ilkesine (Single Responsibility) uygun olarak geliştirdim.
+4. **UI**: Tekrar kullanılabilir UI elemanlarını (Button, Filtreleme elemanları, Breadcrumbs) bileşenler halinde yapılandırdım.
 
 ## Özellikler
 
-1. **Başlık (Header) Bileşeni**: Web sitesinin başlığını ve menü bağlantılarını içeren bileşen.
-2. **Slider Bileşeni**: Otel hakkında çekici görsel bilgileri sunan bir slider bileşeni.
-3. **Oda Arama ve Filtreleme Formu**: Kullanıcıların odaları arayıp filtreleyebileceği bir form bileşeni.
-4. **Oda Türleri Bileşeni**: Otelin sunduğu en az 3 farklı oda türünü, özellikleri ve fiyatlarıyla birlikte gösteren bileşen.
-5. **Footer (Alt Bölüm) Bileşeni**: İletişim bilgileri, sosyal medya bağlantıları ve kısa bir "Hakkımızda" bölümü içeren footer bileşeni.
-6. **Oda Detay Sayfası**: Kullanıcıların oda türlerine tıkladıklarında detaylı bilgilerin gösterildiği sayfa.
+1. **Oda Arama ve Filtreleme Formu**: İki form bileşeni oluşturdum. Ana sayfada, kullanıcıların check-in, check-out ve konuk bilgilerini girerek odaları filtreleyebileceği bir form var. Bu filtreler **Redux** ile yönetiliyor. Rooms sayfasındaki form, ekstra olarak fiyat ve hizmet filtrelerini içeriyor.
+2. **Tekrar Kullanılabilir UI Elemanları**: Button, filtreleme elemanları ve breadcrumb gibi bileşenleri, projede tekrar kullanılabilir hale getirdim.
+
+## Proje Gereksinimleri (Assignment)
+
+Bu projede, assignment'ta belirtilen gereksinimlere uygun olarak aşağıdaki bileşenleri geliştirdim:
+
+- [x] **Header Bileşeni**: Web sitesinde başlık ve menü bağlantılarını içeren bir bileşen oluşturdum.
+- [x] **Slider Bileşeni**: Otel hakkında görsel bilgiler sunan bir slider bileşeni kodladım.
+- [x] **Oda Arama ve Filtreleme Formu**: Kullanıcıların kolayca odaları arayıp filtreleyebileceği bir form bileşeni geliştirdim.
+- [x] **Oda Türleri Bileşeni**: Farklı oda türlerini tanıtan ve özelliklerini gösteren bir bileşen oluşturdum.
+- [x] **Footer Bileşeni**: İletişim bilgileri ve sosyal medya bağlantılarını içeren bir footer bileşeni geliştirdim.
+- [x] **Oda Detay Sayfası**: Kullanıcılar oda türlerine tıkladığında detaylı bilgi sunan bir oda detay sayfası oluşturdum.
+- [x] Uygulamayı **React.js** ile geliştirdim.
+- [x] **Redux Toolkit** ile state yönetimini sağladım.
+- [x] **TailwindCSS** kullanarak projeye stil ekledim.
+- [x] Clean Code prensiplerine uygun bir yapı izledim.
+- [x] **Git** ve branch yapısını kullandım.
+- [x] Projeye "Hakkımızda" ve "İletişim" sayfalarını ekledim.
+
