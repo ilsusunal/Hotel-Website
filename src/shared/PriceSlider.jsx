@@ -1,24 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const PriceSlider = ({ minPrice, maxPrice, onChange }) => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [minValue, setMinValue] = useState(minPrice);
-    const [maxValue, setMaxValue] = useState(maxPrice);
-    const dropdownRef = useRef(null);
+const DEFAULT_MIN_PRICE = 100;
+const DEFAULT_MAX_PRICE = 300;
 
-    // Close dropdown if clicking outside
+const useClickOutside = (handler) => {
+    const ref = useRef(null);
+
     useEffect(() => {
-        function handleClickOutside(event) {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setDropdownOpen(false);
+        const handleClickOutside = (event) => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                handler();
             }
-        }
+        };
 
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [dropdownRef]);
+    }, [handler]);
+
+    return ref;
+};
+
+const PriceSlider = ({ minPrice = DEFAULT_MIN_PRICE, maxPrice = DEFAULT_MAX_PRICE, onChange }) => {
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [minValue, setMinValue] = useState(minPrice);
+    const [maxValue, setMaxValue] = useState(maxPrice);
+    const dropdownRef = useClickOutside(() => setDropdownOpen(false));
 
     const handleMinChange = (e) => {
         const value = Math.min(Number(e.target.value), maxValue - 1);

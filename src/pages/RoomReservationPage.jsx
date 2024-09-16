@@ -16,6 +16,12 @@ const calculateNights = (checkInDate, checkOutDate) => {
     return Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
 };
 
+const breadcrumbTrail = [
+    { label: 'Home', to: '/' },
+    { label: 'Rooms', to: '/rooms' },
+    { label: 'Reservation', to: '/rooms/reservation' }
+];
+
 export default function RoomReservationPage() {
     const history = useHistory();
     const { filteredRooms, checkInDate, checkOutDate, adults, children } = useSelector(state => state.hotel);
@@ -43,12 +49,6 @@ export default function RoomReservationPage() {
     }
 
     const nights = calculateNights(checkInDate, checkOutDate);
-
-    const breadcrumbTrail = [
-        { label: 'Home', to: '/' },
-        { label: 'Rooms', to: '/rooms' },
-        { label: 'Reservation', to: '/rooms/reservation' }
-      ];
 
     return (
         <div className='w-2/3 m-12 space-y-8'>

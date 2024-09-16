@@ -4,10 +4,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCheckOutDate } from '../store/hotelSlice';
 
+const TODAY = new Date();
+
 const CheckOutPicker = () => {
   const dispatch = useDispatch();
   const checkInDate = useSelector(state => state.hotel.checkInDate);
   const checkOutDate = useSelector(state => state.hotel.checkOutDate);
+
+  const minDate = checkInDate
+  ? new Date(new Date(checkInDate).setDate(new Date(checkInDate).getDate() + 1))
+  : TODAY;
 
   const handleDateChange = (date) => {
     dispatch(setCheckOutDate(date ? date.toISOString() : null));
@@ -23,7 +29,7 @@ const CheckOutPicker = () => {
         selected={checkOutDate}
         onChange={handleDateChange}
         placeholderText="Add Date"
-        minDate={checkInDate ? new Date(checkInDate).setDate(new Date(checkInDate).getDate() + 1) : new Date()}
+        minDate={minDate}
         className="text-center font-light mt-1 text-sm bg-transparent focus:outline-none cursor-pointer"
       />
     </div>
