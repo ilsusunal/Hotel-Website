@@ -9,7 +9,7 @@
 }
 
 .custom-hover {
-  @apply hover:text-oceanBlue hover:underline hover:underline-offset-4 hover:decoration-2;
+  @apply hover:text-oceanBlue hover:underline hover:underline-offset-4 hover:decoration-2 sm:text-base text-sm;
 }
 
 .active {

@@ -31,21 +31,21 @@ const ServiceFilter = ({ services, onChange }) => {
     };
 
     return (
-        <div className="flex flex-col items-center relative" ref={dropdownRef}>
+        <div className="flex flex-col items-center relative text-xs md:text-sm" ref={dropdownRef}>
             <div className='flex flex-col items-center' onClick={() => setDropdownOpen(!dropdownOpen)}>
                 <div className='flex gap-2'>
                     <i className="fa-solid fa-bell-concierge text-oceanBlue" />
-                    <p className="text-sm font-semibold cursor-pointer" >
+                    <p className=" font-semibold cursor-pointer" >
                         Services
                     </p>
                 </div>
-                <p className='font-light text-sm mt-1'>( {totalChecked} )</p>
+                <p className='font-light mt-1'>( {totalChecked} )</p>
             </div>
             {dropdownOpen && (
                 <div className="absolute bg-white border-stone-200 border-2 rounded-2xl mt-2 p-4 w-40 top-12 z-10">
                     <div className="flex flex-col space-y-2">
                         <div className="flex justify-between">
-                            <p className="text-sm font-semibold">Kitchen</p>
+                            <p className="font-semibold">Kitchen</p>
                             <input
                                 type="checkbox"
                                 className="custom-checkbox"
@@ -55,7 +55,7 @@ const ServiceFilter = ({ services, onChange }) => {
                             />
                         </div>
                         <div className="flex justify-between">
-                            <p className="text-sm font-semibold">Free WiFi</p>
+                            <p className="font-semibold">Free WiFi</p>
                             <input
                                 type="checkbox"
                                 className="custom-checkbox"

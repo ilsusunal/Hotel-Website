@@ -4,7 +4,7 @@
 
 Demoyu inceleyebilirsiniz: [Demo Linki](https://hotel-website-murex.vercel.app)
 
-## Techstack
+## Tech Stack
 
 - **React.js**: Kullanıcı arayüzünü oluşturmak için.
 - **Redux Toolkit**: State yönetimi için.

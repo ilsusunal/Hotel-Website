@@ -12,11 +12,11 @@ export default function
         <main className='flex flex-col items-center'>
             <section className="relative w-full">
                 <Slider />
-                <div className="absolute top-2 md:top-1/4 left-0 w-full flex justify-center">
+                <div className="md:absolute top-2 md:top-1/4 left-0 w-full flex justify-center">
                     <RoomSearch />
                 </div>
             </section>
-            <section className='max-w-6xl flex flex-col gap-18'>
+            <section className='max-w-6xl flex flex-col gap-4 md:gap-18'>
                 <AboutHotel />
                 <div>
                     <h1 className='text-sunsetCoral font-playfair text-4xl font-semibold text-center'>We heard them say..</h1>

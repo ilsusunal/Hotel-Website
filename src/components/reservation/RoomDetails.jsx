@@ -5,7 +5,7 @@ export default function RoomDetails({ roomDetails }) {
   if (!roomDetails) return null;
 
   return (
-    <div className='flex-1 space-y-8'>
+    <div className='px-4 flex-1 space-y-8'>
       <h2 className='font-playfair text-2xl  font-semibold'>{roomDetails.type}</h2>
       <section className='gap-2 border-b-2 px-6 pb-8 font-light'>
         <p>{roomDetails.description}</p>

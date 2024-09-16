@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function RoomImageGallery({ images }) {
     return (
-        <section className='grid grid-cols-2 gap-2 grid-rows-3 h-80 md:grid-cols-5 md:grid-rows-2'>
+        <section className='px-4 grid grid-cols-2 gap-2 grid-rows-3 md:h-80 md:grid-cols-5 md:grid-rows-2'>
             <img
                 src={images[0]}
                 alt="Room Image 1"

@@ -20,7 +20,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className='w-2/3 m-12 space-y-8'>
+    <div className='md:w-2/3 m-12 space-y-8'>
       <Breadcrumbs trail={breadcrumbTrail} />
       <section className='space-y-4'>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold'>Who Are We?</h1>

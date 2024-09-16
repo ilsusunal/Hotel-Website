@@ -39,8 +39,8 @@ export default function RoomSearch() {
     }
 
     return (
-        <div className="bg-white rounded-xl md:rounded-full p-4 flex flex-col md:flex-row items-center space-x-4 w-1/2">
-            <form onSubmit={handleSearch} className="md:flex items-center w-full justify-around font-light">
+        <div className="border-2 border-sandyBeige/50 md:border-none md:bg-white rounded-full p-4 flex items-center space-x-4 md:w-1/2 mt-2">
+            <form onSubmit={handleSearch} className="flex items-center w-full justify-around font-light">
                 {/* Check-in & Check-out */}
                 <CheckInPicker />
                 <CheckOutPicker />
@@ -54,8 +54,8 @@ export default function RoomSearch() {
                     onDecrementChild={() => setChildren(children - 1)}
                 />
                 {/* Search Results */}
-                <button type='submit' className="bg-oceanBlue text-white p-4 w-full md:w-16 md:h-16 rounded-full">
-                    <i className="fa-solid fa-magnifying-glass" />
+                <button type='submit' className="bg-oceanBlue text-white md:p-4 w-8 h-8 md:w-16 md:h-16 rounded-full ">
+                    <i className="fa-solid fa-magnifying-glass text-xs md:text-base" />
                 </button>
             </form>
         </div>

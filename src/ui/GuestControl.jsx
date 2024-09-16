@@ -23,13 +23,13 @@ const GuestControl = ({ adults, children, onIncrementAdult, onDecrementAdult, on
     let totalPeople = adults + children;
 
     return (
-        <div className="flex flex-col items-center relative" ref={dropdownRef}>
+        <div className="flex flex-col items-center relative text-xs md:text-sm" ref={dropdownRef}>
             <div className="flex flex-col text-center cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
                 <div className='flex gap-2'>
                     <i className="fa-solid fa-user-group text-oceanBlue" />
-                    <p className="text-sm font-semibold">Guests</p>
+                    <p className=" font-semibold">Guests</p>
                 </div>
-                <p className='font-light text-sm mt-1'> ( {totalPeople} )</p>
+                <p className='font-light mt-1'> ( {totalPeople} )</p>
             </div>
             {dropdownOpen && (
                 <div className="absolute bg-white border-stone-200 border-2 rounded-2xl mt-2 p-4 w-52 top-12 z-10">

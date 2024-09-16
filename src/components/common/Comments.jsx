@@ -20,7 +20,7 @@ export default function Comments() {
                         key={index}
                         src={comment.profilePic}
                         alt={`Customer ${index + 1}`}
-                        className='w-24 h-24 rounded-full bg-black cursor-pointer'
+                        className='w-16 h-16 md:w-24 md:h-24 rounded-full bg-black cursor-pointer'
                         onClick={() => handleProfilePicClick(comment)}
                     />
                 ))}

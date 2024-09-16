@@ -10,7 +10,7 @@ const breadcrumbTrail = [
 
 export default function ContactPage() {
   return (
-    <div className='w-2/3 m-12 space-y-8'>
+    <div className='md:w-2/3 m-12 space-y-8'>
       <Breadcrumbs trail={breadcrumbTrail} />
       <section>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8'>Get In Touch</h1>

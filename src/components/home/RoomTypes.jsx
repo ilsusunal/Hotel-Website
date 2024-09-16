@@ -13,7 +13,7 @@ export default function RoomType() {
     };
     return (
         <section className='gap-12 my-16 p-8'>
-            <div className='md:flex space-y-4 justify-between items-center'>
+            <div className='flex flex-col md:flex-row space-y-4 justify-between items-center'>
                 <h1 className='text-sunsetCoral font-playfair text-4xl font-semibold '>Rooms & Suits</h1>
                 <nav className='flex gap-8 list-none cursor-pointer'>
                     <li onClick={() => handleRoomTypeClick('Classic Room')}

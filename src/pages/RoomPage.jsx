@@ -93,7 +93,7 @@ export default function RoomPage() {
   };
 
   return (
-    <div className='w-2/3 m-12 space-y-8'>
+    <div className='md:w-2/3 m-12 space-y-8'>
       <Breadcrumbs trail={breadcrumbTrail} />
       <section>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8'>Rooms & Suits</h1>

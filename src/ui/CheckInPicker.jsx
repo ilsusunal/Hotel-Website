@@ -19,10 +19,10 @@ const CheckInPicker = () => {
   };
 
   return (
-    <div className="flex flex-col items-center max-w-28">
+    <div className="flex flex-col items-center md:max-w-28 text-xs md:text-sm">
       <div className='flex gap-2'>
         <i className="fa-solid fa-calendar-days text-oceanBlue" />
-        <p className="text-sm font-semibold">Check In</p>
+        <p className=" font-semibold">Check In</p>
       </div>
       <DatePicker
         selected={checkInDate}
@@ -30,7 +30,7 @@ const CheckInPicker = () => {
         placeholderText="Add Date"
         minDate={minDate}
         maxDate={maxDate}
-        className="text-center font-light mt-1  text-sm bg-transparent focus:outline-none cursor-pointer"
+        className="text-center font-light mt-1  bg-transparent focus:outline-none cursor-pointer"
       />
     </div>
   );

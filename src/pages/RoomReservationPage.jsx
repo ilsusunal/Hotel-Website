@@ -51,10 +51,10 @@ export default function RoomReservationPage() {
     const nights = calculateNights(checkInDate, checkOutDate);
 
     return (
-        <div className='w-2/3 m-12 space-y-8'>
+        <div className='md:w-2/3 gap-4 m-12 space-y-8'>
             <Breadcrumbs trail={breadcrumbTrail} />
             <AvailableRoomsHeader roomDetails={roomDetails} />
-            <div className='flex justify-between mb-8'>
+            <div className='md:flex justify-between mb-8 px-4'>
                 <RoomTypeSelector
                     roomTypes={roomTypes}
                     selectedType={selectedType}

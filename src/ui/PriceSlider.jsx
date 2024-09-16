@@ -41,15 +41,15 @@ const PriceSlider = ({ minPrice = DEFAULT_MIN_PRICE, maxPrice = DEFAULT_MAX_PRIC
     };
 
     return (
-        <div className="flex flex-col items-center relative" ref={dropdownRef}>
+        <div className="flex flex-col items-center relative text-xs md:text-sm" ref={dropdownRef}>
             <div className='flex flex-col items-center' onClick={() => setDropdownOpen(!dropdownOpen)}>
                 <div className='flex gap-2'>
                     <i className="fa-regular fa-credit-card text-oceanBlue" />
-                    <p className="text-sm font-semibold cursor-pointer" >
+                    <p className=" font-semibold cursor-pointer" >
                         Price Range
                     </p>
                 </div>
-                <p className='font-light text-sm mt-1'>( {minValue} - {maxValue} )</p>
+                <p className='font-light mt-1'>( {minValue} - {maxValue} )</p>
             </div>
             {dropdownOpen && (
                 <div className="absolute bg-white border-stone-200 border-2 rounded-2xl mt-2 p-4 w-80 top-12 z-10">

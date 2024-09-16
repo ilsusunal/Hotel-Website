@@ -25,7 +25,7 @@ const services = [
 
 const Services = () => (
     <section className="py-16">
-        <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold text-center pb-16'>Services</h1>
+        <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold text-center pb-4 md:pb-16'>Services</h1>
         <div className='flex flex-wrap gap-2 justify-around text-stone-400 py-8'>
             {services.map((service, index) => (
                 <div 
@@ -34,7 +34,7 @@ const Services = () => (
                 >
                     <i className={`fa-solid ${service.icon} fa-2x mb-2`} />
                     <p className='mt-2 text-center my-4 font-medium'>{service.title}</p>
-                    <p className='mt-2 text-center font-light max-w-44'>{service.description}</p>
+                    <p className='mt-2 text-center font-light md:max-w-44'>{service.description}</p>
                 </div>
             ))}
         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function RoomTypeSelector({ roomTypes, selectedType, onSelectType }) {
     return (
-        <nav className='flex gap-8 list-none cursor-pointer'>
+        <nav className='flex gap-8 list-none cursor-pointer text-base md:text-sm'>
             {roomTypes.length > 0 ? (
                 roomTypes.map((type, index) => (
                     <li

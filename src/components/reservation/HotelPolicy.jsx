@@ -4,7 +4,7 @@ import CustomButton from '../../ui/CustomButton'
 export default function HotelPolicy() {
     return (
         <>
-            <h3 className='text-sunsetCoral font-playfair text-xl font-semibold'>Things To Know</h3>
+            <h3 className='px-4 text-sunsetCoral font-playfair text-xl font-semibold'>Things To Know</h3>
             <div className='gap-8 border-b-2 px-6 pb-8'>
                 <div className='flex gap-8 mb-8'>
                     <div>
