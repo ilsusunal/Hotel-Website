@@ -25,6 +25,11 @@ const getUniqueRoomTypes = (rooms) => {
   return Object.values(roomTypesMap);
 };
 
+const breadcrumbTrail = [
+  { label: 'Home', to: '/' },
+  { label: 'Rooms', to: '/rooms' }
+];
+
 export default function RoomPage() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -86,11 +91,6 @@ export default function RoomPage() {
     dispatch(setCheckInDate(null));
     dispatch(setCheckOutDate(null));
   };
-
-  const breadcrumbTrail = [
-    { label: 'Home', to: '/' },
-    { label: 'Rooms', to: '/rooms' }
-  ];
 
   return (
     <div className='w-2/3 m-12 space-y-8'>

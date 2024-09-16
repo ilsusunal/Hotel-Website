@@ -3,12 +3,12 @@ import ContactForm from '../components/contact/ContactForm'
 import HotelLocation from '../components/common/HotelLocation'
 import Breadcrumbs from "../shared/Breadcrumbs"
 
-export default function ContactPage() {
-  const breadcrumbTrail = [
-    { label: 'Home', to: '/' },
-    { label: 'Contact', to: '/contact' }
-  ];
+const breadcrumbTrail = [
+  { label: 'Home', to: '/' },
+  { label: 'Contact', to: '/contact' }
+];
 
+export default function ContactPage() {
   return (
     <div className='w-2/3 m-12 space-y-8'>
       <Breadcrumbs trail={breadcrumbTrail} />
