@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Breadcrumbs() {
+export default function Breadcrumbs({ trail }) {
     return (
         <nav className='flex gap-2 items-center'>
-            <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
-            <i className="fa-solid fa-chevron-right" />
-            <Link to="/rooms" className="custom-hover text-gray-500 text-sm">Rooms</Link>
-            <i className="fa-solid fa-chevron-right" />
-            <Link to="/rooms/id" className="custom-hover text-sm text-oceanBlue">Reservation</Link>
+            {trail.map((crumb, index) => (
+                <React.Fragment key={index}>
+                    {index > 0 && <i className="fa-solid fa-chevron-right" />}
+                    <Link
+                        to={crumb.to}
+                        className={`custom-hover text-sm ${index === trail.length - 1 ? 'text-oceanBlue' : 'text-gray-500'}`}
+                    >
+                        {crumb.label}
+                    </Link>
+                </React.Fragment>
+            ))}
         </nav>
     );
 }
-

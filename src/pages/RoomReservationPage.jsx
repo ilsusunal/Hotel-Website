@@ -44,9 +44,15 @@ export default function RoomReservationPage() {
 
     const nights = calculateNights(checkInDate, checkOutDate);
 
+    const breadcrumbTrail = [
+        { label: 'Home', to: '/' },
+        { label: 'Rooms', to: '/rooms' },
+        { label: 'Reservation', to: '/rooms/reservation' }
+      ];
+
     return (
         <div className='w-2/3 m-12 space-y-8'>
-            <Breadcrumbs />
+            <Breadcrumbs trail={breadcrumbTrail} />
             <AvailableRoomsHeader roomDetails={roomDetails} />
             <div className='flex justify-between mb-8'>
                 <RoomTypeSelector

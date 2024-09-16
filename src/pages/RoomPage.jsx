@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import RoomCard from '../cards/RoomCard';
 import 'react-datepicker/dist/react-datepicker.css';
 import GuestControl from '../shared/GuestControl';
@@ -10,6 +10,7 @@ import CheckInPicker from '../shared/CheckInPicker';
 import CheckOutPicker from '../shared/CheckOutPicker';
 import { setFilteredRooms, setGuests, setCheckInDate, setCheckOutDate } from '../store/hotelSlice';
 import Button from '../shared/button';
+import Breadcrumbs from '../shared/Breadcrumbs';
 
 const MIN_PRICE = 0;
 const MAX_PRICE = 300;
@@ -82,19 +83,18 @@ export default function RoomPage() {
       wifi: false
     });
     dispatch(setGuests({ adults: 1, children: 0 }));
-    dispatch(setCheckInDate(null)); 
+    dispatch(setCheckInDate(null));
     dispatch(setCheckOutDate(null));
   };
 
+  const breadcrumbTrail = [
+    { label: 'Home', to: '/' },
+    { label: 'Rooms', to: '/rooms' }
+  ];
 
   return (
     <div className='w-2/3 m-12 space-y-8'>
-      <nav className='flex gap-2 items-center'>
-        <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
-        <i className="fa-solid fa-chevron-right" />
-        <Link to="/rooms" className="custom-hover text-sm text-oceanBlue">Rooms</Link>
-      </nav>
-
+      <Breadcrumbs trail={breadcrumbTrail} />
       <section>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold mb-8'>Rooms & Suits</h1>
       </section>

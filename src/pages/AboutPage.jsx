@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import mockAbout from '../mock/mockAbout.js';
 import Comments from '../components/common/Comments.jsx';
+import Breadcrumbs from '../shared/Breadcrumbs.jsx';
 
 export default function AboutPage() {
   const [selectedSection, setSelectedSection] = useState("History");
@@ -17,14 +17,14 @@ export default function AboutPage() {
     return selectedIntro ? selectedIntro.image : "";
   }
 
+  const breadcrumbTrail = [
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' }
+  ];
+
   return (
     <div className='w-2/3 m-12 space-y-8'>
-      <nav className='flex gap-2 items-center'>
-        <Link to="/" className="custom-hover text-gray-500 text-sm">Home</Link>
-        <i className="fa-solid fa-chevron-right" />
-        <Link to="/about" className="custom-hover text-sm text-oceanBlue">About</Link>
-      </nav>
-
+      <Breadcrumbs trail={breadcrumbTrail} />
       {/* Title */}
       <section className='space-y-4'>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold'>Who Are We?</h1>
@@ -86,7 +86,7 @@ export default function AboutPage() {
       </section>
 
       {/* Top Comments*/}
-      < section  className='w-full'>
+      < section className='w-full'>
         <h1 className='text-sunsetCoral font-playfair text-3xl font-semibold text-center'>Testimonials</h1>
         <Comments />
       </ section>
