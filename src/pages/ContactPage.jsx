@@ -1,7 +1,7 @@
 import React from 'react'
 import ContactForm from '../components/contact/ContactForm'
 import HotelLocation from '../components/common/HotelLocation'
-import Breadcrumbs from "../shared/Breadcrumbs"
+import Breadcrumbs from "../ui/Breadcrumbs"
 
 const breadcrumbTrail = [
   { label: 'Home', to: '/' },

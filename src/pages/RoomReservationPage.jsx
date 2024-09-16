@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import RoomDetails from '../components/reservation/RoomDetails';
-import Button from '../shared/CustomButton';
+import CustomButton from '../ui/CustomButton';
 import ReservationBox from '../components/reservation/ReservationBox';
-import Breadcrumbs from '../shared/Breadcrumbs';
+import Breadcrumbs from '../ui/Breadcrumbs';
 import AvailableRoomsHeader from '../components/reservation/AvailableRoomsHeader';
 import RoomImageGallery from '../components/reservation/RoomImageGallery';
 import RoomTypeSelector from '../components/reservation/RoomTypeSelector';
@@ -60,7 +60,7 @@ export default function RoomReservationPage() {
                     selectedType={selectedType}
                     onSelectType={setSelectedType}
                 />
-                <Button to="/payment" label="Book Now" variant="filled" />
+                <CustomButton to="/payment" label="Book Now" variant="filled" />
             </div>
             <RoomImageGallery images={roomDetails.images} />
             <section className='flex flex-col md:flex-row gap-6'>

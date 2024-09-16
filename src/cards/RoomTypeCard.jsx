@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import Button from '../shared/CustomButton';
+import Button from '../ui/CustomButton';
 
 export default function RoomTypeCard() {
   const selectedRoomType = useSelector((state) => state.hotel.selectedRoomType);

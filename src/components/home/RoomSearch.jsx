@@ -3,9 +3,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRooms, setFilteredRooms, setCheckInDate, setCheckOutDate, setGuests } from '../../store/hotelSlice';
 import { useHistory } from 'react-router-dom';
-import GuestControl from '../../shared/GuestControl';
-import CheckInPicker from '../../shared/CheckInPicker';
-import CheckOutPicker from '../../shared/CheckOutPicker';
+import GuestControl from '../../ui/GuestControl';
+import CheckInPicker from '../../ui/CheckInPicker';
+import CheckOutPicker from '../../ui/CheckOutPicker';
 
 export default function RoomSearch() {
     const [adults, setAdults] = useState(1);

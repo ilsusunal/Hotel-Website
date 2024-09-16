@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import RoomCard from '../cards/RoomCard';
 import 'react-datepicker/dist/react-datepicker.css';
-import GuestControl from '../shared/GuestControl';
-import PriceSlider from '../shared/PriceSlider';
-import ServiceFilter from '../shared/ServiceFilter';
-import CheckInPicker from '../shared/CheckInPicker';
-import CheckOutPicker from '../shared/CheckOutPicker';
+import GuestControl from '../ui/GuestControl';
+import PriceSlider from '../ui/PriceSlider';
+import ServiceFilter from '../ui/ServiceFilter';
+import CheckInPicker from '../ui/CheckInPicker';
+import CheckOutPicker from '../ui/CheckOutPicker';
 import { setFilteredRooms, setGuests, setCheckInDate, setCheckOutDate } from '../store/hotelSlice';
-import Breadcrumbs from '../shared/Breadcrumbs';
-import CustomButton from '../shared/CustomButton';
+import Breadcrumbs from '../ui/Breadcrumbs';
+import CustomButton from '../ui/CustomButton';
 
 const MIN_PRICE = 0;
 const MAX_PRICE = 300;

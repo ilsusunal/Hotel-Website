@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import mockAbout from '../mock/mockAbout.js';
 import Comments from '../components/common/Comments.jsx';
-import Breadcrumbs from '../shared/Breadcrumbs.jsx';
+import Breadcrumbs from '../ui/Breadcrumbs.jsx';
 import Services from '../components/about/Services.jsx';
 import SectionTabs from '../components/about/SectionTabs.jsx';
 import Intro from '../components/about/Intro.jsx';

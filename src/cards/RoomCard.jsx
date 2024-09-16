@@ -1,5 +1,5 @@
 import React from 'react'
-import CustomButton from '../shared/CustomButton'
+import CustomButton from '../ui/CustomButton'
 
 export default function RoomCard({ roomDetails, onBookNow }) {
   return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../shared/CustomButton';
+import CustomButton from '../../ui/CustomButton';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -90,7 +90,7 @@ export default function ContactForm() {
             rows="4"
             placeholder='Message'
           ></textarea>
-          <Button type="submit" label="Send" variant="filled"/>
+          <CustomButton type="submit" label="Send" variant="filled"/>
         </div>
       </form>
     </main>

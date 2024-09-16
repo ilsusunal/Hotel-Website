@@ -1,8 +1,8 @@
 import React from 'react';
-import CheckInPicker from '../../shared/CheckInPicker';
-import CheckOutPicker from '../../shared/CheckOutPicker';
-import GuestControl from '../../shared/GuestControl';
-import Button from '../../shared/CustomButton';
+import CheckInPicker from '../../ui/CheckInPicker';
+import CheckOutPicker from '../../ui/CheckOutPicker';
+import GuestControl from '../../ui/GuestControl';
+import CustomButton from '../../ui/CustomButton';
 
 const BREAKFAST_COST = 200;
 const TAX_RATE = 0.2;
@@ -32,7 +32,7 @@ export default function ReservationBox ({ roomDetails, nights, addBreakfast, set
                 />
             </div>
             <div className='flex flex-col gap-4 text-sm'>
-                <Button to="/payment" label="Book Now" variant="filled" />
+                <CustomButton to="/payment" label="Book Now" variant="filled" />
                 <div className='flex justify-between'>
                     <p>${roomPrice} x {nights} nights</p>
                     <p>${totalRoomCost}</p>

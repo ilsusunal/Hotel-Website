@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../../shared/CustomButton'
+import CustomButton from '../../ui/CustomButton'
 
 export default function HotelPolicy() {
     return (
@@ -13,7 +13,7 @@ export default function HotelPolicy() {
                             <li>Check-in : 2:00 pm - 11:00 pm</li>
                             <li>Check-out until : 12:00 pm</li>
                             <li>No pets allowed</li>
-                            <Button to="/" label="Show more" variant="text"/>
+                            <CustomButton to="/" label="Show more" variant="text"/>
                         </ul>
                     </div>
                     <div>
@@ -22,7 +22,7 @@ export default function HotelPolicy() {
                             <li>Smoke alarm installed</li>
                             <li>Pets are not allowed</li>
                             <li>No Carbon monoxide alarm</li>
-                            <Button to="/" label="Show more" variant="text"/>
+                            <CustomButton to="/" label="Show more" variant="text"/>
                         </ul>
                     </div>
                 </div>
@@ -30,7 +30,7 @@ export default function HotelPolicy() {
                     <h3 className='font-playfair text-xl font-semibold mb-6'>Cancellation Policy</h3>
                     <ul className='font-light text-sm space-y-2'>
                         <li>Free cancellation if done 24-72 hours or more before arrival. As the arrival date approaches, the cancellation window gets smaller, and penalties apply. Cancelling within 24 hours of arrival or being a no-show often forfeits the entire stay and provides no refund. </li>
-                        <Button to="/" label="Show more" variant="text"/>
+                        <CustomButton to="/" label="Show more" variant="text"/>
                     </ul>
                 </div>
             </div>
